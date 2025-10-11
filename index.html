@@ -1047,6 +1047,7 @@
                 reader.readAsText(fileData.file);
             } else {
                 contentHTML = `<div class="no-preview">No hay previsualización disponible para este tipo de archivo</div>`;
+                modalDownloadBtn.style.display = 'block';
             }
             
             if (contentHTML) {
@@ -1146,18 +1147,35 @@
                         
                         // Recrear elementos de archivo en la interfaz
                         fileData[unitId].forEach(file => {
+                            // Recrear el objeto File a partir de los datos guardados
                             const fileItem = document.createElement('div');
                             fileItem.className = 'file-item';
+                            fileItem.dataset.id = file.id;
+                            
+                            const fileIcon = getFileIcon(file.name, file.type);
+                            
                             fileItem.innerHTML = `
-                                <div class="file-icon">${getFileIcon(file.name, file.type)}</div>
+                                <div class="file-icon">${fileIcon}</div>
                                 <div class="file-info">
                                     <div class="file-name">${file.name}</div>
                                     <div class="file-size">${file.size}</div>
                                 </div>
                                 <div class="file-actions">
-                                    <button class="file-action" title="Archivo guardado en servidor"><i class="fas fa-database"></i></button>
+                                    <button class="file-action preview-btn" title="Ver archivo"><i class="fas fa-eye"></i></button>
+                                    <button class="file-action download-btn" title="Descargar"><i class="fas fa-download"></i></button>
+                                    <button class="file-action delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
                                 </div>
                             `;
+                            
+                            // Añadir event listeners a los botones
+                            const previewBtn = fileItem.querySelector('.preview-btn');
+                            const downloadBtn = fileItem.querySelector('.download-btn');
+                            const deleteBtn = fileItem.querySelector('.delete-btn');
+                            
+                            previewBtn.addEventListener('click', () => previewFile(file));
+                            downloadBtn.addEventListener('click', () => downloadFile(file));
+                            deleteBtn.addEventListener('click', () => deleteFile(file.id, fileItem, unitId));
+                            
                             document.getElementById(`file-list-${unitId}`).appendChild(fileItem);
                         });
                         

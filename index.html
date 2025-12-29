@@ -37,7 +37,6 @@
             min-height: 100vh;
         }
 
-        /* Elementos flotantes decorativos */
         .floating-element {
             position: fixed;
             border-radius: 50%;
@@ -53,7 +52,6 @@
             top: 10%;
             left: 5%;
             animation-delay: 0s;
-            background: radial-gradient(circle, var(--accent-red-1), transparent);
         }
 
         .floating-element:nth-child(2) {
@@ -62,7 +60,6 @@
             top: 60%;
             right: 10%;
             animation-delay: 5s;
-            background: radial-gradient(circle, var(--accent-red-3), transparent);
         }
 
         .floating-element:nth-child(3) {
@@ -71,16 +68,6 @@
             bottom: 20%;
             left: 15%;
             animation-delay: 10s;
-            background: radial-gradient(circle, var(--accent-red-5), transparent);
-        }
-
-        .floating-element:nth-child(4) {
-            width: 250px;
-            height: 250px;
-            top: 30%;
-            right: 20%;
-            animation-delay: 7s;
-            background: radial-gradient(circle, var(--accent-red-2), transparent);
         }
 
         @keyframes float {
@@ -105,7 +92,6 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -117,12 +103,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--accent-red-1), var(--accent-red-2), var(--accent-red-3), var(--accent-red-4), var(--accent-red-5));
-        }
-
-        header:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.3);
+            background: linear-gradient(90deg, var(--accent-red-1), var(--accent-red-2), var(--accent-red-3));
         }
 
         h1 {
@@ -130,12 +111,7 @@
             font-size: 3em;
             margin-bottom: 10px;
             text-shadow: 0 2px 10px rgba(255, 23, 68, 0.3);
-            transition: color 0.3s ease;
             font-weight: 800;
-        }
-
-        h1:hover {
-            color: var(--accent-red-5);
         }
 
         .student-info {
@@ -148,10 +124,8 @@
         .subtitle {
             color: var(--text-secondary);
             font-size: 1.3em;
-            margin-bottom: 20px;
         }
 
-        /* Navegación por unidades */
         .units-nav {
             display: flex;
             justify-content: center;
@@ -197,20 +171,8 @@
             box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
         }
 
-        .unit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.4);
-        }
-
-        /* Contenido de unidades */
         .unit-content {
             display: none;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 30px 0;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             animation: fadeIn 0.5s ease;
         }
 
@@ -225,9 +187,12 @@
 
         .unit-header {
             text-align: center;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .unit-title {
@@ -244,231 +209,115 @@
             margin: 0 auto;
         }
 
-        /* Sección de subida de archivos */
-        .upload-section {
-            background: var(--bg-tertiary);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px 0;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .upload-section h2 {
-            color: var(--accent-red-1);
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 2em;
-        }
-
-        .upload-area {
-            border: 3px dashed var(--border-color);
-            border-radius: 15px;
-            padding: 50px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            margin-bottom: 25px;
-            position: relative;
-            background: var(--bg-secondary);
-        }
-
-        .upload-area.active {
-            border-color: var(--accent-red-1);
-            background: rgba(255, 23, 68, 0.05);
-            box-shadow: 0 0 30px rgba(255, 23, 68, 0.2);
-        }
-
-        .upload-area i {
-            font-size: 5em;
-            color: var(--accent-red-1);
-            margin-bottom: 25px;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .upload-area.active i {
-            color: var(--accent-red-5);
-            transform: scale(1.1);
-        }
-
-        .upload-area h3 {
-            color: var(--accent-red-1);
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .upload-area p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-
-        .file-types {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .file-type-tag {
-            background: var(--accent-red-3);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
-        .upload-btn {
-            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 20px rgba(255, 23, 68, 0.4);
-            position: relative;
-            overflow: hidden;
-            font-size: 1.1em;
-        }
-
-        .upload-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .upload-btn:hover::before {
-            left: 100%;
-        }
-
-        .upload-btn:hover {
-            background: linear-gradient(135deg, var(--accent-red-2), var(--accent-red-4));
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.5);
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .uploaded-files {
-            margin-top: 40px;
-        }
-
-        .uploaded-files h3 {
-            color: var(--accent-red-1);
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 1.8em;
-        }
-
-        .file-list {
+        .code-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
         }
 
-        .file-item {
+        .code-card {
             background: var(--bg-secondary);
-            padding: 25px;
             border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.3);
+            border-color: var(--accent-red-1);
+        }
+
+        .code-header {
+            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
             display: flex;
             align-items: center;
-            gap: 20px;
-            transition: all 0.4s ease;
-            border-left: 5px solid var(--accent-red-1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            gap: 10px;
         }
 
-        .file-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255, 23, 68, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .code-title i {
+            font-size: 1.5em;
         }
 
-        .file-item:hover::before {
-            opacity: 1;
-        }
-
-        .file-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(255, 23, 68, 0.3);
-            border-left-color: var(--accent-red-5);
-        }
-
-        .file-icon {
-            font-size: 2.5em;
-            color: var(--accent-red-1);
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .file-item:hover .file-icon {
-            color: var(--accent-red-5);
-            transform: scale(1.1);
-        }
-
-        .file-info {
-            flex: 1;
-        }
-
-        .file-name {
-            color: var(--text-primary);
-            font-weight: bold;
-            margin-bottom: 8px;
-            word-break: break-word;
-            font-size: 1.1em;
-        }
-
-        .file-size {
-            color: var(--text-secondary);
-            font-size: 0.9em;
-        }
-
-        .file-actions {
+        .code-actions {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .file-action {
-            background: var(--bg-tertiary);
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            color: var(--text-secondary);
-            width: 45px;
-            height: 45px;
+            color: white;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.3em;
+            font-size: 1.1em;
         }
 
-        .file-action:hover {
-            background: var(--accent-red-1);
-            color: white;
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
 
-        /* Modal para previsualización */
+        .code-body {
+            padding: 25px;
+            background: var(--bg-tertiary);
+        }
+
+        .code-content {
+            background: #000;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #0f0;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .code-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .code-content::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        .code-content::-webkit-scrollbar-thumb {
+            background: var(--accent-red-1);
+            border-radius: 10px;
+        }
+
+        .code-description {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--accent-red-1);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -476,11 +325,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
         }
 
         .modal-content {
@@ -508,11 +361,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--bg-tertiary);
+            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
         }
 
         .modal-title {
-            color: var(--accent-red-1);
+            color: white;
             font-weight: bold;
             font-size: 1.4em;
         }
@@ -520,103 +373,29 @@
         .modal-close {
             background: none;
             border: none;
-            color: var(--text-secondary);
-            font-size: 1.8em;
+            color: white;
+            font-size: 2em;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .modal-close:hover {
-            color: var(--accent-red-1);
+            transform: rotate(90deg);
         }
 
         .modal-body {
             flex: 1;
             padding: 25px;
             overflow: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #000;
         }
 
-        .preview-content {
-            width: 100%;
-            text-align: center;
-        }
-
-        .preview-content img {
-            max-width: 100%;
-            max-height: 70vh;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .preview-content iframe {
-            width: 100%;
-            height: 70vh;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .preview-content pre {
-            background: var(--bg-tertiary);
-            padding: 25px;
-            border-radius: 10px;
-            text-align: left;
-            max-height: 70vh;
-            overflow: auto;
-            color: var(--text-primary);
+        .modal-code {
+            color: #0f0;
             font-family: 'Courier New', monospace;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            font-size: 0.95em;
-        }
-
-        .no-preview {
-            color: var(--text-secondary);
-            font-style: italic;
-            padding: 50px;
-            font-size: 1.2em;
-        }
-
-        .modal-footer {
-            padding: 20px 25px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            background: var(--bg-tertiary);
-        }
-
-        .modal-btn {
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
             font-size: 1em;
-        }
-
-        .download-btn {
-            background: var(--accent-red-1);
-            color: white;
-            border: none;
-        }
-
-        .download-btn:hover {
-            background: var(--accent-red-2);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.4);
-        }
-
-        .close-btn {
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .close-btn:hover {
-            background: var(--bg-tertiary);
+            line-height: 1.8;
+            white-space: pre-wrap;
         }
 
         footer {
@@ -629,27 +408,6 @@
             border-top: 1px solid var(--border-color);
         }
 
-        /* Efectos de interacción con el mouse */
-        .interactive-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .interactive-dot {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-red-1);
-            opacity: 0.3;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2em;
@@ -657,171 +415,63 @@
             
             .units-nav {
                 flex-direction: column;
-                gap: 15px;
             }
             
-            .unit-btn {
-                padding: 15px 25px;
-            }
-            
-            .file-list {
+            .code-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .file-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .file-actions {
-                margin-top: 15px;
-            }
-            
-            .unit-content {
-                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Elementos flotantes decorativos -->
     <div class="floating-element"></div>
     <div class="floating-element"></div>
     <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    
-    <!-- Fondo interactivo -->
-    <div class="interactive-bg" id="interactive-bg"></div>
     
     <div class="container">
         <header>
             <h1>LENGUAJE DE PROGRAMACIÓN II</h1>
             <p class="student-info">COYLA IDME LEONEL - 4to A</p>
-            <p class="subtitle">Sistema de Gestión de Archivos por Unidad</p>
+            <p class="subtitle">Portfolio de Programación Orientada a Objetos</p>
         </header>
 
-        <!-- Navegación por unidades -->
         <div class="units-nav">
             <button class="unit-btn active" data-unit="1">Primera Unidad</button>
             <button class="unit-btn" data-unit="2">Segunda Unidad</button>
             <button class="unit-btn" data-unit="3">Tercera Unidad</button>
         </div>
 
-        <!-- Contenido de la Primera Unidad -->
+        <!-- Primera Unidad -->
         <div class="unit-content active" id="unit-1">
             <div class="unit-header">
                 <h2 class="unit-title">Primera Unidad</h2>
                 <p class="unit-description">Fundamentos de Programación Orientada a Objetos - Clases, Objetos y Métodos en Python</p>
             </div>
 
-            <!-- Sección de subida de archivos -->
-            <section class="upload-section">
-                <h2>Subir Archivos - Primera Unidad</h2>
-                <div class="upload-area" id="upload-area-1">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>Arrastra y suelta archivos aquí</h3>
-                    <p>o haz clic para seleccionar archivos de tu computadora</p>
-                    <div class="file-types">
-                        <span class="file-type-tag">Python (.py)</span>
-                        <span class="file-type-tag">PDF (.pdf)</span>
-                        <span class="file-type-tag">Imágenes</span>
-                        <span class="file-type-tag">Documentos</span>
-                        <span class="file-type-tag">Archivos de Texto</span>
-                    </div>
-                    <button class="upload-btn" id="upload-trigger-1">Seleccionar Archivos</button>
-                    <input type="file" class="file-input" id="file-input-1" multiple>
-                </div>
-                
-                <div class="uploaded-files">
-                    <h3>Archivos de la Primera Unidad</h3>
-                    <div class="file-list" id="file-list-1">
-                        <!-- Los archivos subidos aparecerán aquí -->
-                        <div class="empty-state" id="empty-state-1">
-                            <p style="text-align: center; color: var(--text-secondary); padding: 50px; font-size: 1.1em;">
-                                No hay archivos subidos todavía. Sube tu primer archivo arriba.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="code-grid" id="code-grid-1"></div>
         </div>
 
-        <!-- Contenido de la Segunda Unidad -->
+        <!-- Segunda Unidad -->
         <div class="unit-content" id="unit-2">
             <div class="unit-header">
                 <h2 class="unit-title">Segunda Unidad</h2>
-                <p class="unit-description">Estructuras de Datos Avanzadas y Algoritmos - Listas, Diccionarios y Funciones en Python</p>
+                <p class="unit-description">Estructuras de Datos y Control de Flujo - Bucles, Condicionales y Series</p>
             </div>
 
-            <!-- Sección de subida de archivos -->
-            <section class="upload-section">
-                <h2>Subir Archivos - Segunda Unidad</h2>
-                <div class="upload-area" id="upload-area-2">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>Arrastra y suelta archivos aquí</h3>
-                    <p>o haz clic para seleccionar archivos de tu computadora</p>
-                    <div class="file-types">
-                        <span class="file-type-tag">Python (.py)</span>
-                        <span class="file-type-tag">PDF (.pdf)</span>
-                        <span class="file-type-tag">Imágenes</span>
-                        <span class="file-type-tag">Documentos</span>
-                        <span class="file-type-tag">Archivos de Texto</span>
-                    </div>
-                    <button class="upload-btn" id="upload-trigger-2">Seleccionar Archivos</button>
-                    <input type="file" class="file-input" id="file-input-2" multiple>
-                </div>
-                
-                <div class="uploaded-files">
-                    <h3>Archivos de la Segunda Unidad</h3>
-                    <div class="file-list" id="file-list-2">
-                        <!-- Los archivos subidos aparecerán aquí -->
-                        <div class="empty-state" id="empty-state-2">
-                            <p style="text-align: center; color: var(--text-secondary); padding: 50px; font-size: 1.1em;">
-                                No hay archivos subidos todavía. Sube tu primer archivo arriba.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="code-grid" id="code-grid-2"></div>
         </div>
 
-        <!-- Contenido de la Tercera Unidad -->
+        <!-- Tercera Unidad -->
         <div class="unit-content" id="unit-3">
             <div class="unit-header">
                 <h2 class="unit-title">Tercera Unidad</h2>
-                <p class="unit-description">Programación Avanzada y Proyectos - Manejo de Archivos, Excepciones y Proyectos Integradores</p>
+                <p class="unit-description">Próximamente - Proyectos Avanzados</p>
             </div>
 
-            <!-- Sección de subida de archivos -->
-            <section class="upload-section">
-                <h2>Subir Archivos - Tercera Unidad</h2>
-                <div class="upload-area" id="upload-area-3">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <h3>Arrastra y suelta archivos aquí</h3>
-                    <p>o haz clic para seleccionar archivos de tu computadora</p>
-                    <div class="file-types">
-                        <span class="file-type-tag">Python (.py)</span>
-                        <span class="file-type-tag">PDF (.pdf)</span>
-                        <span class="file-type-tag">Imágenes</span>
-                        <span class="file-type-tag">Documentos</span>
-                        <span class="file-type-tag">Archivos de Texto</span>
-                    </div>
-                    <button class="upload-btn" id="upload-trigger-3">Seleccionar Archivos</button>
-                    <input type="file" class="file-input" id="file-input-3" multiple>
-                </div>
-                
-                <div class="uploaded-files">
-                    <h3>Archivos de la Tercera Unidad</h3>
-                    <div class="file-list" id="file-list-3">
-                        <!-- Los archivos subidos aparecerán aquí -->
-                        <div class="empty-state" id="empty-state-3">
-                            <p style="text-align: center; color: var(--text-secondary); padding: 50px; font-size: 1.1em;">
-                                No hay archivos subidos todavía. Sube tu primer archivo arriba.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div style="text-align: center; padding: 100px; color: var(--text-secondary);">
+                <i class="fas fa-hourglass-half" style="font-size: 5em; margin-bottom: 20px; color: var(--accent-red-1);"></i>
+                <h3>Contenido en desarrollo</h3>
+            </div>
         </div>
 
         <footer>
@@ -830,410 +480,414 @@
         </footer>
     </div>
 
-    <!-- Modal para previsualización -->
-    <div class="modal" id="preview-modal">
+    <div class="modal" id="code-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title" id="modal-title">Previsualización</div>
+                <div class="modal-title" id="modal-title"></div>
                 <button class="modal-close" id="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="preview-content" id="preview-content">
-                    <!-- El contenido de previsualización se insertará aquí -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-btn close-btn" id="modal-close-btn">Cerrar</button>
-                <button class="modal-btn download-btn" id="modal-download-btn">Descargar</button>
+                <pre class="modal-code" id="modal-code"></pre>
             </div>
         </div>
     </div>
 
     <script>
-        // Variables globales
-        let uploadedFiles = {
-            1: [], // Archivos de la primera unidad
-            2: [], // Archivos de la segunda unidad
-            3: []  // Archivos de la tercera unidad
-        };
-        let currentPreviewFile = null;
+        const codesUnit1 = [
+            {
+                title: "Ejemplo 01: Clase Coche",
+                description: "Introducción a clases con entrada de usuario",
+                code: `class Coche:
+    def __init__(self,marca,modelo,color):
+        self.marca = marca
+        self.modelo = modelo
+        self.color = color
 
-        // Elementos DOM
-        const unitButtons = document.querySelectorAll('.unit-btn');
-        const unitContents = document.querySelectorAll('.unit-content');
-        const interactiveBg = document.getElementById('interactive-bg');
-        const previewModal = document.getElementById('preview-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const previewContent = document.getElementById('preview-content');
-        const modalClose = document.getElementById('modal-close');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-        const modalDownloadBtn = document.getElementById('modal-download-btn');
+    def mostrar_info(self):
+        print(f"Coche:{self.marca} {self.modelo} {self.color}")
 
-        // Inicializar la aplicación
-        document.addEventListener('DOMContentLoaded', initApp);
+    def arrancar(self):
+        print(f"Coche {self.marca} {self.modelo} ha arrancado ")
 
-        function initApp() {
-            // Configurar eventos para botones de unidad
-            unitButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const unitId = btn.dataset.unit;
-                    switchUnit(unitId);
-                });
-            });
+#Solicitar datos al usuario
+marca = input("Ingrese la marca del coche")
+modelo = input("Ingrese el modelo del auto")
+color = input("Ingrese el color del coche")
+        
+#crear un objeto
+mi_coche = Coche(marca, modelo, color)
 
-            // Configurar eventos para subida de archivos de cada unidad
-            setupFileUpload(1);
-            setupFileUpload(2);
-            setupFileUpload(3);
+#Usar los métodos
+mi_coche.mostrar_info()
+mi_coche.arrancar()`
+            },
+            {
+                title: "Ejemplo 02: Teorema de Pitágoras",
+                description: "Cálculo de hipotenusa usando POO",
+                code: `class Pitagoras:
+    def __init__(self,catetoa,catetob):
+       self.catetoa = catetoa
+       self.catetob = catetob
 
-            // Configurar eventos del modal
-            modalClose.addEventListener('click', closeModal);
-            modalCloseBtn.addEventListener('click', closeModal);
-            modalDownloadBtn.addEventListener('click', downloadCurrentFile);
+    def calcular_hipotenusa(self):
+        return (self.catetoa**2 + self.catetob**2)**(1/2)
 
-            // Crear efecto de puntos interactivos
-            createInteractiveDots();
+#Solicitud
+catetoa = float(input("Ingrese cateto a = "))
+catetob = float(input("Ingrese cateto b = "))
+
+operacion = Pitagoras(catetoa,catetob)
+
+print("La hipotenusa es ",operacion.calcular_hipotenusa())`
+            },
+            {
+                title: "Ejemplo 03: Rectángulo",
+                description: "Cálculo de área y perímetro",
+                code: `class Rectangulo:
+    def __init__(self,base,altura):
+        self.base = base
+        self.altura = altura
+
+    def area(self):
+        return (self.base * self.altura)
+
+    def perimetro(self):
+        return (self.base*2 + self.altura*2)
+
+operacion_area = Rectangulo(5,6)
+operacion_perimetro = Rectangulo(5,6)
+
+print("El area es ",operacion_area.area())
+print("El perimetro es ",operacion_perimetro.perimetro())`
+            },
+            {
+                title: "Ejemplo 04: Cantidad de Ladrillos",
+                description: "Cálculo de materiales de construcción",
+                code: `class CantidadLadrillos:
+    def __init__(self,longuitud,altura,ancho,Jh,Jv):
+        self.longuitud = longuitud
+        self.altura = altura
+        self.ancho = ancho
+        self.Jh = 0.015
+        self.Jv = 0.015
+
+    def Cantidad_de_ladrillos(self):
+        return (1/((self.longuitud + self.Jh) * (self.altura + self.Jv)))
+
+#Solicitar
+longuitud = float(input("Ingresar longuitud: "))
+altura = float(input("Ingresar altura: "))
+ancho = float(input("Ingresar ancho: "))
+
+operacion = CantidadLadrillos(longuitud,altura,ancho,0.015,0.015)
+
+print("La cantidad es ",operacion.Cantidad_de_ladrillos(),"m^2 sin desperdicio")
+print("La cantidad es ",operacion.Cantidad_de_ladrillos()*1.05,"m^2 con desperdicio")`
+            },
+            {
+                title: "Ejemplo 05: Clasificador de Números",
+                description: "Determinar si un número es par, impar o nulo",
+                code: `class Numero:
+    def __init__(self,valor):
+        self.valor = valor
+
+    def clasificar(self):
+        if self.valor == 0:
+            return "Nulo"
+        elif self.valor%2 == 0:
+            return "Par"
+        else:
+            return "Impar"
             
-            // Efecto de interacción con el mouse
-            document.addEventListener('mousemove', handleMouseMove);
+ejemplos = [Numero(0),Numero(2),Numero(5)]
 
-            // Cargar archivos guardados
-            loadSavedFiles();
-        }
+for num in ejemplos:
+    tipo = num.clasificar()
+    print(f"El numero {num.valor} es {tipo}")`
+            },
+            {
+                title: "Ejemplo 06: Persona Mayor de Edad",
+                description: "Verificación de mayoría de edad",
+                code: `class Persona:
+    def __init__(self,nombre,edad):
+        self.nombre = nombre
+        self.edad = edad
 
-        // Cambiar entre unidades
-        function switchUnit(unitId) {
-            // Actualizar botones activos
-            unitButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.unit === unitId);
-            });
+    def es_mayor_de_edad(self):
+        if self.edad >= 18:
+            return True
+        else:
+            return False 
 
-            // Mostrar contenido de la unidad seleccionada
-            unitContents.forEach(content => {
-                content.classList.toggle('active', content.id === `unit-${unitId}`);
-            });
-        }
+persona = Persona("Maria",25)
 
-        // Configurar subida de archivos para una unidad específica
-        function setupFileUpload(unitId) {
-            const uploadArea = document.getElementById(`upload-area-${unitId}`);
-            const fileInput = document.getElementById(`file-input-${unitId}`);
-            const uploadTrigger = document.getElementById(`upload-trigger-${unitId}`);
+if persona.es_mayor_de_edad():
+    print(f"La persona {persona.nombre} es mayor de edad")
+else:
+    print(f"La persona {persona.nombre} es menor de edad")`
+            },
+            {
+                title: "Ejemplo 07: Sistema de Aumentos",
+                description: "Aplicar aumentos según cargo de empleado",
+                code: `class Empleado:
+    def __init__(self,Nombre,Cargo,Salario):
+        self.Nombre = Nombre
+        self.Cargo = Cargo
+        self.Salario = Salario
 
-            uploadTrigger.addEventListener('click', () => fileInput.click());
-            fileInput.addEventListener('change', (e) => handleFileSelect(e, unitId));
-            
-            // Configurar drag and drop
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.classList.add('active');
-            });
-            
-            uploadArea.addEventListener('dragleave', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('active');
-            });
-            
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.classList.remove('active');
-                handleFileSelect(e, unitId);
-            });
-        }
+    def AplicarAumento(self):
+        if self.Cargo == "Gerente":
+            porcentaje = 0.1
+        elif self.Cargo == "Supervisor":
+            porcentaje = 0.07
+        elif self.Cargo == "Operario":
+            porcentaje = 0.05
+        else:
+            porcentaje = 0
 
-        // Manejar selección de archivos
-        function handleFileSelect(e, unitId) {
-            const files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
-            if (files.length > 0) {
-                processFiles(files, unitId);
+        NuevoSalario = self.Salario *(1 + porcentaje)
+        return NuevoSalario
+    
+emp = Empleado("Juan", "Gerente", 5000)
+nuevo = emp.AplicarAumento()
+    
+print(f"{emp.Nombre} {emp.Cargo}: salario nuevo = {nuevo:.2f}")`
+            },
+            {
+                title: "Ejemplo 20: Encapsulamiento",
+                description: "Uso de métodos getter y setter",
+                code: `class Persona:
+    def __init__(self,nombre,edad):
+        self.__nombre = nombre #atributo privado
+        self.__edad = edad #atributo privado
+
+    def get_edad(self):
+        return self.__edad
+
+    def get_nombre(self):
+        return self.__nombre
+
+    def set_edad(self,nueva_edad):
+        if nueva_edad > 0:
+            self.__edad = nueva_edad
+        else:
+            print("Edad no valida")
+
+    def set_nombre(self,nuevo_nombre):
+        self.__nombre = nuevo_nombre
+        return self.__nombre
+    
+persona = Persona("Ana",30)
+print(persona.get_nombre())
+print(persona.get_edad())
+
+persona.set_edad(35)
+persona.set_nombre("Maria")
+print(persona.get_nombre(),persona.get_edad())`
             }
-        }
+        ];
 
-        // Procesar archivos
-        function processFiles(files, unitId) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const fileData = {
-                    id: Date.now() + i,
-                    name: file.name,
-                    size: formatFileSize(file.size),
-                    type: file.type,
-                    file: file,
-                    url: URL.createObjectURL(file),
-                    unit: unitId
-                };
-                
-                uploadedFiles[unitId].push(fileData);
-                addFileToList(fileData, unitId);
-            }
-            
-            // Actualizar estado vacío
-            updateEmptyState(unitId);
-            
-            // Guardar en localStorage
-            saveFiles();
-            
-            // Limpiar input
-            document.getElementById(`file-input-${unitId}`).value = '';
-        }
+        const codesUnit2 = [
+            {
+                title: "Ejemplo 08: Factorial",
+                description: "Cálculo del factorial de un número",
+                code: `class Factorial:
+    def __init__(self,numero):
+        self.numero = numero
+        self.resultado = 1
 
-        // Añadir archivo a la lista
-        function addFileToList(fileData, unitId) {
-            const fileList = document.getElementById(`file-list-${unitId}`);
-            const emptyState = document.getElementById(`empty-state-${unitId}`);
-            
-            // Eliminar estado vacío si existe
-            if (emptyState && emptyState.parentNode) {
-                emptyState.remove();
-            }
-            
-            const fileItem = document.createElement('div');
-            fileItem.className = 'file-item';
-            fileItem.dataset.id = fileData.id;
-            
-            const fileIcon = getFileIcon(fileData.name, fileData.type);
-            
-            fileItem.innerHTML = `
-                <div class="file-icon">${fileIcon}</div>
-                <div class="file-info">
-                    <div class="file-name">${fileData.name}</div>
-                    <div class="file-size">${fileData.size}</div>
-                </div>
-                <div class="file-actions">
-                    <button class="file-action preview-btn" title="Ver archivo"><i class="fas fa-eye"></i></button>
-                    <button class="file-action download-btn" title="Descargar"><i class="fas fa-download"></i></button>
-                    <button class="file-action delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
-                </div>
-            `;
-            
-            // Añadir event listeners a los botones
-            const previewBtn = fileItem.querySelector('.preview-btn');
-            const downloadBtn = fileItem.querySelector('.download-btn');
-            const deleteBtn = fileItem.querySelector('.delete-btn');
-            
-            previewBtn.addEventListener('click', () => previewFile(fileData));
-            downloadBtn.addEventListener('click', () => downloadFile(fileData));
-            deleteBtn.addEventListener('click', () => deleteFile(fileData.id, fileItem, unitId));
-            
-            fileList.appendChild(fileItem);
-        }
+    def calcular(self):
+        if self.numero < 0:
+            print("El factorial no esta definido para numeros negativos")
+            return None
+        for i in range(1,self.numero+1):
+            self.resultado *= i
+        return self.resultado
 
-        // Previsualizar archivo
-        function previewFile(fileData) {
-            currentPreviewFile = fileData;
-            modalTitle.textContent = `Previsualización: ${fileData.name}`;
-            
-            // Configurar botón de descarga
-            modalDownloadBtn.style.display = 'block';
-            
-            // Mostrar contenido según el tipo de archivo
-            let contentHTML = '';
-            
-            if (fileData.type.startsWith('image/')) {
-                contentHTML = `<img src="${fileData.url}" alt="${fileData.name}">`;
-            } else if (fileData.type === 'application/pdf') {
-                contentHTML = `<iframe src="${fileData.url}"></iframe>`;
-            } else if (fileData.type.startsWith('text/') || 
-                       fileData.name.endsWith('.py') || 
-                       fileData.name.endsWith('.txt') || 
-                       fileData.name.endsWith('.js') || 
-                       fileData.name.endsWith('.html') || 
-                       fileData.name.endsWith('.css')) {
-                // Leer y mostrar contenido de texto
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewContent.innerHTML = `<pre>${e.target.result}</pre>`;
-                };
-                reader.readAsText(fileData.file);
-            } else {
-                contentHTML = `<div class="no-preview">No hay previsualización disponible para este tipo de archivo</div>`;
-                modalDownloadBtn.style.display = 'block';
-            }
-            
-            if (contentHTML) {
-                previewContent.innerHTML = contentHTML;
-            }
-            
-            // Mostrar modal
-            previewModal.style.display = 'flex';
-        }
+def main():
+    miFactorial = Factorial(5)
+    resultado = miFactorial.calcular()
+    if resultado is not None:
+        print(f"El factorial de {miFactorial.numero} es {resultado}")
+        
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 09: Serie de Fibonacci",
+                description: "Generación de la serie de Fibonacci",
+                code: `class Fibonacci:
+    def __init__(self,cantidad):
+        self.cantidad = cantidad
+        self.serie = []
 
-        // Descargar archivo actual
-        function downloadCurrentFile() {
-            if (currentPreviewFile) {
-                downloadFile(currentPreviewFile);
-            }
-        }
+    def generarSerie(self):
+        a,b = 0,1
+        for _ in range(self.cantidad):
+            self.serie.append(a)
+            a,b = b,a+b
+        return self.serie
 
-        // Descargar archivo
-        function downloadFile(fileData) {
-            const a = document.createElement('a');
-            a.href = fileData.url;
-            a.download = fileData.name;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+def main():
+    miFibonacci = Fibonacci(10)
+    resultado = miFibonacci.generarSerie()
+    print(resultado)
+    
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 10: Tabla de Multiplicar",
+                description: "Generación de tabla de multiplicar",
+                code: `class TabladeMultiplicar:
+    def __init__(self,numero):
+        self.numero = numero
 
-        // Eliminar archivo
-        function deleteFile(fileId, fileElement, unitId) {
-            // Eliminar de la lista
-            uploadedFiles[unitId] = uploadedFiles[unitId].filter(file => file.id !== fileId);
-            
-            // Eliminar elemento del DOM
-            fileElement.remove();
-            
-            // Actualizar estado vacío
-            updateEmptyState(unitId);
-            
-            // Guardar cambios
-            saveFiles();
-        }
+    def generarTabla(self):
+        for i in range(1, 11):
+            resultado = self.numero*i
+            print(f"{self.numero} x {i} = {resultado}")
 
-        // Cerrar modal
-        function closeModal() {
-            previewModal.style.display = 'none';
-            currentPreviewFile = null;
-        }
+def main():
+    numero = int(input("Ingrese un numero "))
+    miTabla = TabladeMultiplicar(numero)
+    miTabla.generarTabla()
 
-        // Actualizar estado vacío
-        function updateEmptyState(unitId) {
-            const fileList = document.getElementById(`file-list-${unitId}`);
-            const emptyState = document.getElementById(`empty-state-${unitId}`);
-            
-            if (uploadedFiles[unitId].length === 0 && emptyState && !emptyState.parentNode) {
-                fileList.appendChild(emptyState);
-            }
-        }
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 11: Suma de Naturales",
+                description: "Suma de números naturales hasta un límite",
+                code: `class SumaNaturales:
+    def __init__(self, limite):
+        self.limite = limite
+        self.suma = 0
 
-        // Obtener icono según tipo de archivo
-        function getFileIcon(filename, fileType) {
-            if (fileType.startsWith('image/')) return '<i class="fas fa-image"></i>';
-            if (fileType === 'application/pdf') return '<i class="fas fa-file-pdf"></i>';
-            if (filename.endsWith('.py')) return '<i class="fab fa-python"></i>';
-            if (fileType.startsWith('text/')) return '<i class="fas fa-file-alt"></i>';
-            if (fileType.includes('word') || filename.endsWith('.doc') || filename.endsWith('.docx')) return '<i class="fas fa-file-word"></i>';
-            if (fileType.includes('excel') || filename.endsWith('.xls') || filename.endsWith('.xlsx')) return '<i class="fas fa-file-excel"></i>';
-            if (fileType.includes('zip') || filename.endsWith('.rar') || filename.endsWith('.7z')) return '<i class="fas fa-file-archive"></i>';
-            return '<i class="fas fa-file"></i>';
-        }
+    def calcularSuma(self):
+        for i in range(0, self.limite + 1):
+            self.suma = self.suma + i
+        return self.suma
 
-        // Formatear tamaño de archivo
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
+def main():
+    miSuma = SumaNaturales(10)
+    resultado = miSuma.calcularSuma()
+    print(f"La suma de los primeros {miSuma.limite} números es: {resultado}")
 
-        // Guardar archivos en localStorage
-        function saveFiles() {
-            // En una implementación real, aquí guardarías los archivos en el servidor
-            // Para esta demo, solo guardamos los metadatos en localStorage
-            localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
-        }
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 12: Números Naturales (While)",
+                description: "Mostrar números usando bucle while",
+                code: `class NumeroNatural:
+    def __init__(self, valor):
+        self.valor = valor
 
-        // Cargar archivos guardados
-        function loadSavedFiles() {
-            const savedFiles = localStorage.getItem('uploadedFiles');
-            if (savedFiles) {
-                const fileData = JSON.parse(savedFiles);
-                
-                // Cargar archivos para cada unidad
-                for (let unitId in fileData) {
-                    if (fileData.hasOwnProperty(unitId)) {
-                        uploadedFiles[unitId] = fileData[unitId];
-                        
-                        // Recrear elementos de archivo en la interfaz
-                        fileData[unitId].forEach(file => {
-                            // Recrear el objeto File a partir de los datos guardados
-                            const fileItem = document.createElement('div');
-                            fileItem.className = 'file-item';
-                            fileItem.dataset.id = file.id;
-                            
-                            const fileIcon = getFileIcon(file.name, file.type);
-                            
-                            fileItem.innerHTML = `
-                                <div class="file-icon">${fileIcon}</div>
-                                <div class="file-info">
-                                    <div class="file-name">${file.name}</div>
-                                    <div class="file-size">${file.size}</div>
-                                </div>
-                                <div class="file-actions">
-                                    <button class="file-action preview-btn" title="Ver archivo"><i class="fas fa-eye"></i></button>
-                                    <button class="file-action download-btn" title="Descargar"><i class="fas fa-download"></i></button>
-                                    <button class="file-action delete-btn" title="Eliminar"><i class="fas fa-trash"></i></button>
-                                </div>
-                            `;
-                            
-                            // Añadir event listeners a los botones
-                            const previewBtn = fileItem.querySelector('.preview-btn');
-                            const downloadBtn = fileItem.querySelector('.download-btn');
-                            const deleteBtn = fileItem.querySelector('.delete-btn');
-                            
-                            previewBtn.addEventListener('click', () => previewFile(file));
-                            downloadBtn.addEventListener('click', () => downloadFile(file));
-                            deleteBtn.addEventListener('click', () => deleteFile(file.id, fileItem, unitId));
-                            
-                            document.getElementById(`file-list-${unitId}`).appendChild(fileItem);
-                        });
-                        
-                        // Actualizar estado vacío
-                        updateEmptyState(unitId);
-                    }
-                }
-            }
-        }
+    def mostrar(self):
+        print(f"Número natural: {self.valor}")
 
-        // Crear puntos interactivos
-        function createInteractiveDots() {
-            for (let i = 0; i < 25; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'interactive-dot';
-                dot.style.left = `${Math.random() * 100}%`;
-                dot.style.top = `${Math.random() * 100}%`;
-                
-                // Asignar diferentes tonos de rojo
-                const redTones = [
-                    'var(--accent-red-1)',
-                    'var(--accent-red-2)',
-                    'var(--accent-red-3)',
-                    'var(--accent-red-4)',
-                    'var(--accent-red-5)',
-                    'var(--accent-red-6)'
-                ];
-                dot.style.background = redTones[Math.floor(Math.random() * redTones.length)];
-                
-                interactiveBg.appendChild(dot);
-            }
-        }
+def main():
+    i = 1
+    while i <= 10:
+        numero = NumeroNatural(i)
+        numero.mostrar()
+        i += 1
 
-        // Manejar movimiento del mouse para efectos interactivos
-        function handleMouseMove(e) {
-            const dots = document.querySelectorAll('.interactive-dot');
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            dots.forEach(dot => {
-                const rect = dot.getBoundingClientRect();
-                const dotX = rect.left + rect.width / 2;
-                const dotY = rect.top + rect.height / 2;
-                
-                const distance = Math.sqrt(
-                    Math.pow(mouseX - dotX, 2) + 
-                    Math.pow(mouseY - dotY, 2)
-                );
-                
-                if (distance < 100) {
-                    dot.style.transform = `scale(1.8)`;
-                    dot.style.opacity = '0.7';
-                } else {
-                    dot.style.transform = `scale(1)`;
-                    dot.style.opacity = '0.3';
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+if __name__ == "__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 13: Múltiplos de 3 y 5",
+                description: "Determinar múltiplos usando while",
+                code: `class NumeroMultiplo:
+    def __init__(self, valor):
+        self.valor = valor
+
+    def mostrar_multiplo(self):
+        if self.valor == 0:
+            print(f"El {self.valor} es número nulo")
+        elif self.valor % 3 == 0 and self.valor % 5 == 0:
+            print(f"Número: {self.valor} es múltiplo de 3 y de 5")
+        elif self.valor % 3 == 0:
+            print(f"Número: {self.valor} es múltiplo de 3")
+        elif self.valor % 5 == 0:
+            print(f"Número: {self.valor} es múltiplo de 5")
+        else:
+            print(f"Número: {self.valor} No es múltiplo de 3 ni de 5")
+        print("-" * 60)
+
+def main():
+    i = 0
+    while i <= 10:
+        numero = NumeroMultiplo(i)
+        numero.mostrar_multiplo()
+        i += 1
+
+if __name__ == "__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 14: Fibonacci con While",
+                description: "Serie de Fibonacci usando bucle while",
+                code: `class Fibonacci:
+    def __init__(self,cantidad):
+        self.cantidad = cantidad
+        self.a = 0
+        self.b = 1
+        self.contador = 0
+        
+    def generarSerie(self):
+        print("Serie de Fibonacci")
+        while self.contador < self.cantidad:
+            print(self.a, end = " ")
+            c = self.a + self.b
+            self.a = self.b
+            self.b = c
+            self.contador += 1
+
+def main():
+    miFibonacci = Fibonacci(10)
+    miFibonacci.generarSerie()
+    
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 15: Imprimir Números",
+                description: "Generar secuencia de números",
+                code: `class Numero:
+    def __init__(self,cantidad):
+        self.cantidad = cantidad
+        self.contador = 0
+        
+    def generarNumero(self):
+        print("Imprimir Numero")
+        while self.contador <= self.cantidad:
+            print(self.contador, end = " ")
+            self.contador += 1
+
+def main():
+    miNumero = Numero(10)
+    miNumero.generarNumero()
+    
+if __name__=="__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 16: Calculadora de Suma",
+                description: "Sumar números ingresados por el usuario",
+                code: `class CalculadoraSuma:
+    def __init__(self):
+        self.total = 0
+        
+    def sumarNumero(self):
+        print("Calcular la suma de números ingresados")
+        print("Escribe números para sumar. Escribir 'fin' para terminar")
+        entrada = ""
+        while entrada.lower() != "fin":
+            entrada = input("Ingrese un número: ")
+            if entrada.isdigit():
+                self.total += int(entrada)
+            elif entrada.lower() != "fin":
+                print("Entrada invalida

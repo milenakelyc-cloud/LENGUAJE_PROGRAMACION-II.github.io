@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LENGUAJE DE PROGRAMACIÓN II - COYLA IDME LEONEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
     <style>
@@ -18,16 +18,16 @@
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
+            --bg-tertiary: #252525;
             --accent-red-1: #ff1744;
             --accent-red-2: #d50000;
             --accent-red-3: #b71c1c;
             --accent-red-4: #7f0000;
             --accent-red-5: #ff5252;
-            --accent-red-6: #ff8a80;
             --text-primary: #f5f5f5;
             --text-secondary: #b0b0b0;
             --border-color: #3a3a3a;
+            --success-color: #4CAF50;
         }
 
         body {
@@ -89,10 +89,9 @@
         header {
             text-align: center;
             padding: 40px 0;
-            background: rgba(26, 26, 26, 0.9);
+            background: rgba(26, 26, 26, 0.95);
             border-radius: 20px;
             margin-bottom: 30px;
-            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
@@ -111,14 +110,14 @@
 
         h1 {
             color: var(--accent-red-1);
-            font-size: 3em;
+            font-size: 2.8em;
             margin-bottom: 10px;
             text-shadow: 0 2px 10px rgba(255, 23, 68, 0.3);
             font-weight: 800;
         }
 
         .student-info {
-            color: var(--accent-red-3);
+            color: var(--accent-red-5);
             font-size: 1.4em;
             margin-bottom: 15px;
             font-weight: bold;
@@ -126,14 +125,14 @@
 
         .subtitle {
             color: var(--text-secondary);
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
 
         .units-nav {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 40px 0;
+            gap: 30px;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
@@ -141,32 +140,21 @@
             background: var(--bg-secondary);
             color: var(--text-primary);
             border: 2px solid var(--border-color);
-            padding: 18px 35px;
-            border-radius: 15px;
+            padding: 18px 40px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 1.1em;
-            transition: all 0.4s ease;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            min-width: 200px;
+            min-width: 220px;
         }
 
-        .unit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
-            transition: width 0.4s ease;
-            z-index: -1;
-        }
-
-        .unit-btn:hover::before {
-            width: 100%;
+        .unit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 23, 68, 0.2);
         }
 
         .unit-btn.active {
@@ -193,138 +181,186 @@
         .unit-header {
             text-align: center;
             background: var(--bg-secondary);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .unit-title {
             color: var(--accent-red-1);
-            font-size: 2.5em;
+            font-size: 2.2em;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .unit-description {
             color: var(--text-secondary);
-            font-size: 1.2em;
+            font-size: 1.1em;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 20px;
         }
 
-        .code-grid {
+        .unit-stats {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 23, 68, 0.1);
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-red-3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            color: var(--accent-red-1);
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .code-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 25px;
             margin: 30px 0;
         }
 
         .code-card {
             background: var(--bg-secondary);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .code-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.2);
             border-color: var(--accent-red-1);
         }
 
-        .code-header {
+        .card-header {
             background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
-            padding: 20px;
+            padding: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .code-title {
+        .card-title {
             color: white;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.1em;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .code-title i {
-            font-size: 1.5em;
+        .card-title i {
+            font-size: 1.2em;
         }
 
-        .code-actions {
+        .card-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .action-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border: none;
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
+            transition: all 0.2s ease;
+            font-size: 1em;
         }
 
         .action-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
             transform: scale(1.1);
         }
 
-        .code-body {
-            padding: 25px;
-            background: var(--bg-tertiary);
+        .card-body {
+            padding: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .code-content {
-            background: #000;
+        .code-preview {
+            background: #1e1e1e;
             padding: 20px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            line-height: 1.6;
-            max-height: 400px;
-            overflow-y: auto;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            flex: 1;
+            overflow: hidden;
+            max-height: 250px;
+            position: relative;
         }
 
-        .hljs {
+        .code-preview pre {
+            margin: 0;
+            padding: 0;
             background: transparent !important;
-            padding: 0 !important;
         }
 
-        .code-content::-webkit-scrollbar {
-            width: 8px;
+        .code-preview code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            color: #d4d4d4;
         }
 
-        .code-content::-webkit-scrollbar-track {
-            background: #1a1a1a;
-            border-radius: 10px;
+        .code-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(transparent, #1e1e1e);
+            pointer-events: none;
         }
 
-        .code-content::-webkit-scrollbar-thumb {
-            background: var(--accent-red-1);
-            border-radius: 10px;
+        .card-footer {
+            padding: 15px 20px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
         }
 
-        .code-description {
-            margin-top: 15px;
-            padding: 15px;
-            background: var(--bg-secondary);
-            border-radius: 8px;
+        .card-description {
             color: var(--text-secondary);
-            border-left: 4px solid var(--accent-red-1);
+            font-size: 0.95em;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .card-description i {
+            color: var(--accent-red-1);
+            margin-top: 2px;
         }
 
         .modal {
@@ -334,11 +370,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal.active {
@@ -347,25 +389,25 @@
 
         .modal-content {
             background: var(--bg-secondary);
-            border-radius: 20px;
+            border-radius: 15px;
             width: 90%;
-            max-width: 1000px;
-            max-height: 90vh;
+            max-width: 900px;
+            max-height: 85vh;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            animation: modalFadeIn 0.4s ease;
+            animation: modalSlideIn 0.3s ease;
         }
 
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes modalSlideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
-            padding: 25px;
+            padding: 20px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
@@ -376,72 +418,153 @@
         .modal-title {
             color: white;
             font-weight: bold;
-            font-size: 1.4em;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .modal-close {
             background: none;
             border: none;
             color: white;
-            font-size: 2em;
+            font-size: 1.8em;
             cursor: pointer;
             transition: transform 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .modal-close:hover {
             transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .modal-body {
             flex: 1;
-            padding: 25px;
             overflow: auto;
-            background: #000;
+            background: #1e1e1e;
+            padding: 0;
+        }
+
+        .modal-code-container {
+            padding: 25px;
         }
 
         .modal-code {
-            color: #f8f8f2;
-            font-family: 'Courier New', monospace;
-            font-size: 1em;
-            line-height: 1.8;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
             white-space: pre-wrap;
             margin: 0;
+            background: transparent !important;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-success {
+            color: var(--success-color);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-success.show {
+            opacity: 1;
+        }
+
+        .modal-copy-btn {
+            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.3);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            margin-top: 60px;
+            padding: 30px;
+            margin-top: 50px;
             background: var(--bg-secondary);
-            border-radius: 20px;
+            border-radius: 15px;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-color);
         }
 
-        .unit-stats {
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-red-1), var(--accent-red-3));
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 23, 68, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+            font-size: 1.2em;
         }
 
-        .stat-item {
-            background: rgba(255, 23, 68, 0.1);
-            padding: 15px 30px;
-            border-radius: 10px;
-            border: 1px solid var(--accent-red-3);
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.4);
         }
 
-        .stat-number {
-            color: var(--accent-red-1);
-            font-size: 2em;
-            font-weight: bold;
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
 
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9em;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-red-1);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red-2);
+        }
+
+        @media (max-width: 1100px) {
+            .code-container {
+                grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -452,14 +575,28 @@
             .units-nav {
                 flex-direction: column;
                 align-items: center;
-            }
-            
-            .code-grid {
-                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .unit-btn {
                 width: 90%;
+                min-width: unset;
+            }
+            
+            .code-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
@@ -473,40 +610,43 @@
         <header>
             <h1>LENGUAJE DE PROGRAMACIÓN II</h1>
             <p class="student-info">COYLA IDME LEONEL - 4to A</p>
-            <p class="subtitle">Portfolio de Programación Orientada a Objetos</p>
+            <p class="subtitle">Portfolio de Programación Orientada a Objetos en Python</p>
         </header>
 
         <div class="units-nav">
             <button class="unit-btn active" data-unit="1">Primera Unidad</button>
             <button class="unit-btn" data-unit="2">Segunda Unidad</button>
-            <button class="unit-btn" data-unit="3">Tercera Unidad</button>
         </div>
 
         <!-- Primera Unidad -->
         <div class="unit-content active" id="unit-1">
             <div class="unit-header">
-                <h2 class="unit-title">Primera Unidad</h2>
-                <p class="unit-description">Fundamentos de Programación Orientada a Objetos - Clases, Objetos y Métodos en Python</p>
+                <h2 class="unit-title">Primera Unidad: Fundamentos de POO</h2>
+                <p class="unit-description">Introducción a la Programación Orientada a Objetos - Clases, Objetos, Métodos y Conceptos Básicos</p>
                 <div class="unit-stats">
                     <div class="stat-item">
                         <div class="stat-number">8</div>
                         <div class="stat-label">Ejemplos</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Conceptos Clave</div>
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Conceptos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Proyecto</div>
                     </div>
                 </div>
             </div>
 
-            <div class="code-grid" id="code-grid-1"></div>
+            <div class="code-container" id="code-container-1"></div>
         </div>
 
         <!-- Segunda Unidad -->
         <div class="unit-content" id="unit-2">
             <div class="unit-header">
-                <h2 class="unit-title">Segunda Unidad</h2>
-                <p class="unit-description">Encapsulamiento, Métodos Especiales, Destructores y Aplicaciones Avanzadas</p>
+                <h2 class="unit-title">Segunda Unidad: POO Avanzada</h2>
+                <p class="unit-description">Encapsulamiento, Métodos Especiales, Destructores y Aplicaciones Prácticas</p>
                 <div class="unit-stats">
                     <div class="stat-item">
                         <div class="stat-number">19</div>
@@ -514,42 +654,51 @@
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">8</div>
-                        <div class="stat-label">Conceptos Clave</div>
+                        <div class="stat-label">Conceptos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Proyectos</div>
                     </div>
                 </div>
             </div>
 
-            <div class="code-grid" id="code-grid-2"></div>
-        </div>
-
-        <!-- Tercera Unidad -->
-        <div class="unit-content" id="unit-3">
-            <div class="unit-header">
-                <h2 class="unit-title">Tercera Unidad</h2>
-                <p class="unit-description">Próximamente - Proyectos Avanzados y Aplicaciones Complejas</p>
-            </div>
-
-            <div style="text-align: center; padding: 100px; color: var(--text-secondary);">
-                <i class="fas fa-hourglass-half" style="font-size: 5em; margin-bottom: 20px; color: var(--accent-red-1);"></i>
-                <h3>Contenido en desarrollo</h3>
-                <p style="margin-top: 20px;">Métodos avanzados, herencia, polimorfismo y aplicaciones prácticas</p>
-            </div>
+            <div class="code-container" id="code-container-2"></div>
         </div>
 
         <footer>
             <p>&copy; 2024 LENGUAJE DE PROGRAMACIÓN II - Universidad Nacional del Altiplano</p>
-            <p>Desarrollado por COYLA IDME LEONEL - 4to A</p>
+            <p>Desarrollado por COYLA IDME LEONEL - 4to A | Python - Programación Orientada a Objetos</p>
         </footer>
     </div>
+
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <div class="modal" id="code-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title" id="modal-title"></div>
+                <div class="modal-title">
+                    <i class="fas fa-code"></i>
+                    <span id="modal-title">Código Python</span>
+                </div>
                 <button class="modal-close" id="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <pre class="modal-code" id="modal-code"></pre>
+                <div class="modal-code-container">
+                    <pre><code class="modal-code language-python" id="modal-code"></code></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="copy-success" id="copy-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Código copiado al portapapeles</span>
+                </div>
+                <button class="modal-copy-btn" id="modal-copy-btn">
+                    <i class="far fa-copy"></i>
+                    <span>Copiar código</span>
+                </button>
             </div>
         </div>
     </div>
@@ -559,7 +708,7 @@
         const codesUnit1 = [
             {
                 title: "Ejemplo 01: Clase Coche",
-                description: "Introducción a clases con entrada de usuario",
+                description: "Introducción a clases con entrada de usuario - Creación de objetos y métodos básicos",
                 code: `class Coche:
     def __init__(self, marca, modelo, color):
         self.marca = marca
@@ -586,7 +735,7 @@ mi_coche.arrancar()`
             },
             {
                 title: "Ejemplo 02: Teorema de Pitágoras",
-                description: "Cálculo de hipotenusa usando POO",
+                description: "Cálculo de hipotenusa usando POO - Clase con método matemático",
                 code: `class Pitagoras:
     def __init__(self, catetoa, catetob):
         self.catetoa = catetoa
@@ -605,7 +754,7 @@ print("La hipotenusa es ", operacion.calcular_hipotenusa())`
             },
             {
                 title: "Ejemplo 03: Rectángulo",
-                description: "Cálculo de área y perímetro",
+                description: "Cálculo de área y perímetro - Métodos que retornan valores",
                 code: `class Rectangulo:
     def __init__(self, base, altura):
         self.base = base
@@ -625,7 +774,7 @@ print("El perímetro es ", operacion_perimetro.perimetro())`
             },
             {
                 title: "Ejemplo 04: Cantidad de Ladrillos",
-                description: "Cálculo de materiales de construcción",
+                description: "Cálculo de materiales de construcción - Aplicación práctica con POO",
                 code: `class CantidadLadrillos:
     def __init__(self, longitud, altura, ancho, Jh=0.015, Jv=0.015):
         self.longitud = longitud
@@ -649,7 +798,7 @@ print("La cantidad es ", operacion.cantidad_de_ladrillos() * 1.05, "m^2 con desp
             },
             {
                 title: "Ejemplo 05: Clasificador de Números",
-                description: "Determinar si un número es par, impar o nulo",
+                description: "Determinar si un número es par, impar o nulo - Condicionales en métodos",
                 code: `class Numero:
     def __init__(self, valor):
         self.valor = valor
@@ -670,7 +819,7 @@ for num in ejemplos:
             },
             {
                 title: "Ejemplo 06: Persona Mayor de Edad",
-                description: "Verificación de mayoría de edad",
+                description: "Verificación de mayoría de edad - Métodos booleanos",
                 code: `class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -691,7 +840,7 @@ else:
             },
             {
                 title: "Ejemplo 07: Sistema de Aumentos",
-                description: "Aplicar aumentos según cargo de empleado",
+                description: "Aplicar aumentos según cargo de empleado - Estructuras condicionales múltiples",
                 code: `class Empleado:
     def __init__(self, Nombre, Cargo, Salario):
         self.Nombre = Nombre
@@ -718,7 +867,7 @@ print(f"{emp.Nombre} {emp.Cargo}: salario nuevo = {nuevo:.2f}")`
             },
             {
                 title: "Ejemplo 20: Encapsulamiento",
-                description: "Uso de métodos getter y setter",
+                description: "Uso de métodos getter y setter - Atributos privados y control de acceso",
                 code: `class Persona:
     def __init__(self, nombre, edad):
         self.__nombre = nombre  # atributo privado
@@ -750,224 +899,11 @@ print(persona.get_nombre(), persona.get_edad())`
             }
         ];
 
-        // Datos de la segunda unidad (incluyendo los nuevos ejemplos)
+        // Datos de la segunda unidad
         const codesUnit2 = [
             {
-                title: "Ejemplo 08: Factorial",
-                description: "Cálculo del factorial de un número",
-                code: `class Factorial:
-    def __init__(self, numero):
-        self.numero = numero
-        self.resultado = 1
-
-    def calcular(self):
-        if self.numero < 0:
-            print("El factorial no está definido para números negativos")
-            return None
-        for i in range(1, self.numero + 1):
-            self.resultado *= i
-        return self.resultado
-
-def main():
-    miFactorial = Factorial(5)
-    resultado = miFactorial.calcular()
-    if resultado is not None:
-        print(f"El factorial de {miFactorial.numero} es {resultado}")
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 09: Serie de Fibonacci",
-                description: "Generación de la serie de Fibonacci",
-                code: `class Fibonacci:
-    def __init__(self, cantidad):
-        self.cantidad = cantidad
-        self.serie = []
-
-    def generar_serie(self):
-        a, b = 0, 1
-        for _ in range(self.cantidad):
-            self.serie.append(a)
-            a, b = b, a + b
-        return self.serie
-
-def main():
-    miFibonacci = Fibonacci(10)
-    resultado = miFibonacci.generar_serie()
-    print(resultado)
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 10: Tabla de Multiplicar",
-                description: "Generación de tabla de multiplicar",
-                code: `class TablaDeMultiplicar:
-    def __init__(self, numero):
-        self.numero = numero
-
-    def generar_tabla(self):
-        for i in range(1, 11):
-            resultado = self.numero * i
-            print(f"{self.numero} x {i} = {resultado}")
-
-def main():
-    numero = int(input("Ingrese un número: "))
-    miTabla = TablaDeMultiplicar(numero)
-    miTabla.generar_tabla()
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 11: Suma de Naturales",
-                description: "Suma de números naturales hasta un límite",
-                code: `class SumaNaturales:
-    def __init__(self, limite):
-        self.limite = limite
-        self.suma = 0
-
-    def calcular_suma(self):
-        for i in range(0, self.limite + 1):
-            self.suma = self.suma + i
-        return self.suma
-
-def main():
-    miSuma = SumaNaturales(10)
-    resultado = miSuma.calcular_suma()
-    print(f"La suma de los primeros {miSuma.limite} números es: {resultado}")
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 12: Números Naturales (While)",
-                description: "Mostrar números usando bucle while",
-                code: `class NumeroNatural:
-    def __init__(self, valor):
-        self.valor = valor
-
-    def mostrar(self):
-        print(f"Número natural: {self.valor}")
-
-def main():
-    i = 1
-    while i <= 10:
-        numero = NumeroNatural(i)
-        numero.mostrar()
-        i += 1
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 13: Múltiplos de 3 y 5",
-                description: "Determinar múltiplos usando while",
-                code: `class NumeroMultiplo:
-    def __init__(self, valor):
-        self.valor = valor
-
-    def mostrar_multiplo(self):
-        if self.valor == 0:
-            print(f"El {self.valor} es número nulo")
-        elif self.valor % 3 == 0 and self.valor % 5 == 0:
-            print(f"Número: {self.valor} es múltiplo de 3 y de 5")
-        elif self.valor % 3 == 0:
-            print(f"Número: {self.valor} es múltiplo de 3")
-        elif self.valor % 5 == 0:
-            print(f"Número: {self.valor} es múltiplo de 5")
-        else:
-            print(f"Número: {self.valor} No es múltiplo de 3 ni de 5")
-        print("-" * 60)
-
-def main():
-    i = 0
-    while i <= 10:
-        numero = NumeroMultiplo(i)
-        numero.mostrar_multiplo()
-        i += 1
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 14: Fibonacci con While",
-                description: "Serie de Fibonacci usando bucle while",
-                code: `class Fibonacci:
-    def __init__(self, cantidad):
-        self.cantidad = cantidad
-        self.a = 0
-        self.b = 1
-        self.contador = 0
-
-    def generar_serie(self):
-        print("Serie de Fibonacci")
-        while self.contador < self.cantidad:
-            print(self.a, end=" ")
-            c = self.a + self.b
-            self.a = self.b
-            self.b = c
-            self.contador += 1
-
-def main():
-    miFibonacci = Fibonacci(10)
-    miFibonacci.generar_serie()
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 15: Imprimir Números",
-                description: "Generar secuencia de números",
-                code: `class Numero:
-    def __init__(self, cantidad):
-        self.cantidad = cantidad
-        self.contador = 0
-
-    def generar_numero(self):
-        print("Imprimir Números")
-        while self.contador <= self.cantidad:
-            print(self.contador, end=" ")
-            self.contador += 1
-
-def main():
-    miNumero = Numero(10)
-    miNumero.generar_numero()
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
-                title: "Ejemplo 16: Calculadora de Suma",
-                description: "Sumar números ingresados por el usuario",
-                code: `class CalculadoraSuma:
-    def __init__(self):
-        self.total = 0
-
-    def sumar_numero(self):
-        print("Calcular la suma de números ingresados")
-        print("Escribe números para sumar. Escribir 'fin' para terminar")
-        entrada = ""
-        while entrada.lower() != "fin":
-            entrada = input("Ingrese un número: ")
-            if entrada.isdigit():
-                self.total += int(entrada)
-            elif entrada.lower() != "fin":
-                print("Entrada inválida")
-
-        print(f"Total de la suma: {self.total}")
-
-def main():
-    calculadora = CalculadoraSuma()
-    calculadora.sumar_numero()
-
-if __name__ == "__main__":
-    main()`
-            },
-            {
                 title: "Ejemplo 21: Círculo Encapsulado",
-                description: "Encapsulamiento con métodos getter y setter",
+                description: "Encapsulamiento con métodos getter y setter - Cálculo de área y perímetro",
                 code: `import math
 
 class Circulo:
@@ -995,7 +931,7 @@ print("Perímetro del círculo:", round(circulo.calcular_perimetro(), 2))`
             },
             {
                 title: "Ejemplo 22: Rectángulo Encapsulado",
-                description: "Encapsulamiento de atributos en rectángulo",
+                description: "Encapsulamiento de atributos en rectángulo - Getters y setters",
                 code: `class Rectangulo:
     def __init__(self, base, altura):
         self.__base = base
@@ -1031,7 +967,7 @@ print("El perímetro del rectángulo:", rectangulo.calcular_perimetro())`
             },
             {
                 title: "Ejemplo 23: Calculadora Completa",
-                description: "Calculadora con encapsulamiento completo",
+                description: "Calculadora con encapsulamiento completo - Métodos matemáticos",
                 code: `class Calculadora:
     def __init__(self, numero1, numero2):
         self.__numero1 = numero1
@@ -1077,14 +1013,14 @@ print("División:", calculadora.dividir())
 calculadora.set_numero1(10)
 calculadora.set_numero2(4)
 
-print("\nNuevos valores:")
+print("\\nNuevos valores:")
 print("Número 1:", calculadora.get_numero1())
 print("Número 2:", calculadora.get_numero2())
 print("Suma:", calculadora.sumar())`
             },
             {
                 title: "Ejemplo 24: Interacción entre Personas",
-                description: "Métodos que interactúan entre objetos",
+                description: "Métodos que interactúan entre objetos - Comunicación entre instancias",
                 code: `class Persona:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -1103,7 +1039,7 @@ persona2.responder()`
             },
             {
                 title: "Ejemplo 25: Métodos con Parámetros",
-                description: "Uso de parámetros en métodos",
+                description: "Uso de parámetros en métodos - Flexibilidad en métodos de instancia",
                 code: `class Calculadora:
     def sumar(self, a, b):
         self.a = a
@@ -1117,7 +1053,7 @@ print(f"La suma de los parámetros {calcular.a} y {calcular.b} es {suma}")`
             },
             {
                 title: "Ejemplo 26: Métodos de Instancia",
-                description: "Métodos que operan sobre atributos",
+                description: "Métodos que operan sobre atributos - Cálculo de área",
                 code: `class Rectangulo:
     def __init__(self, base, altura):
         self.base = base
@@ -1133,7 +1069,7 @@ print("El área de un rectángulo es:", area)`
             },
             {
                 title: "Ejemplo 27: Sobrecarga de Métodos",
-                description: "Método con parámetros opcionales",
+                description: "Método con parámetros opcionales - Polimorfismo básico",
                 code: `class Operaciones:
     def sumar(self, a, b, c=None):
         if c is not None:
@@ -1149,7 +1085,7 @@ print("Suma con tres números:", operacion2.sumar(1, 2, 3))`
             },
             {
                 title: "Ejemplo 28: Círculo con Métodos",
-                description: "Círculo con múltiples métodos",
+                description: "Círculo con múltiples métodos - Información completa",
                 code: `import math
 
 class Circulo:
@@ -1174,7 +1110,7 @@ circulo.mostrar_informacion()`
             },
             {
                 title: "Ejemplo 29: Triángulo Rectángulo",
-                description: "Cálculo de hipotenusa en triángulo",
+                description: "Cálculo de hipotenusa en triángulo - Aplicación matemática",
                 code: `class Triangulo:
     def __init__(self, catetoa, catetob):
         self.catetoa = catetoa
@@ -1184,13 +1120,12 @@ circulo.mostrar_informacion()`
         hipotenusa = (self.catetoa ** 2 + self.catetob ** 2) ** (1/2)
         return hipotenusa
 
-hipotenusa = Triangulo(3, 4)
-
-print("La hipotenusa es:", hipotenusa.calcular_hipotenusa())`
+triangulo = Triangulo(3, 4)
+print("La hipotenusa es:", triangulo.calcular_hipotenusa())`
             },
             {
                 title: "Ejemplo 30: Métodos Especiales (Persona)",
-                description: "Sobrecarga de operadores en Persona",
+                description: "Sobrecarga de operadores en Persona - __str__, __eq__, __gt__, __add__",
                 code: `class Persona:
     def __init__(self, nombre, edad):
         self.nombre = nombre
@@ -1216,17 +1151,18 @@ print(persona1)
 print(persona2)
 print(persona3)
 
-print(persona1 == persona2)
-print(persona1 == persona3)
+print("\\nComparaciones:")
+print(f"{persona1.nombre} == {persona2.nombre}: {persona1 == persona2}")
+print(f"{persona1.nombre} == {persona3.nombre}: {persona1 == persona3}")
+print(f"{persona1.nombre} > {persona2.nombre}: {persona1 > persona2}")
 
-print(persona1 > persona2)
-
-print("Suma de edades:", persona1 + persona2)
-print("Suma de edades:", persona1 + persona3)`
+print("\\nSuma de edades:")
+print(f"{persona1.nombre} + {persona2.nombre} = {persona1 + persona2}")
+print(f"{persona1.nombre} + {persona3.nombre} = {persona1 + persona3}")`
             },
             {
                 title: "Ejemplo 31: Métodos Especiales (Producto)",
-                description: "Sobrecarga de operadores en Producto",
+                description: "Sobrecarga de operadores en Producto - Comparación y suma",
                 code: `class Producto:
     def __init__(self, nombre, precio, stock):
         self.nombre = nombre
@@ -1246,19 +1182,22 @@ prod1 = Producto("Arroz", 3.50, 20)
 prod2 = Producto("Arroz", 3.50, 15)
 prod3 = Producto("Azúcar", 4.00, 10)
 
+print("Productos:")
 print(prod1)
 print(prod2)
 print(prod3)
 
-print(prod1 == prod2)
-print(prod1 == prod3)
+print("\\nComparaciones:")
+print(f"{prod1.nombre} == {prod2.nombre}: {prod1 == prod2}")
+print(f"{prod1.nombre} == {prod3.nombre}: {prod1 == prod3}")
 
-print("Suma de precio de productos:", prod1 + prod2)
-print("Suma de precio de productos:", prod1 + prod3)`
+print("\\nSuma de precios:")
+print(f"{prod1.nombre} + {prod2.nombre} = S/. {prod1 + prod2:.2f}")
+print(f"{prod1.nombre} + {prod3.nombre} = S/. {prod1 + prod3:.2f}")`
             },
             {
                 title: "Ejemplo 32: Métodos Especiales (Cuenta Bancaria)",
-                description: "Sobrecarga del operador resta",
+                description: "Sobrecarga del operador resta - Operaciones bancarias",
                 code: `class CuentaBancaria:
     def __init__(self, titular, saldo):
         self.titular = titular
@@ -1279,23 +1218,27 @@ print("Suma de precio de productos:", prod1 + prod3)`
             return self
 
 cuenta1 = CuentaBancaria("Luis", 1000)
+print("Cuenta inicial:")
 cuenta1.mostrar()
 
+print("\\nRetiro de $250:")
 cuenta2 = cuenta1 - 250
 cuenta2.mostrar()
 
+print("\\nRetiro de $700:")
 cuenta3 = cuenta2 - 700
 cuenta3.mostrar()`
             },
             {
                 title: "Ejemplo 33: Destructor (Triángulo)",
-                description: "Uso del método destructor __del__",
+                description: "Uso del método destructor __del__ - Gestión de recursos",
                 code: `import math
 
 class TrianguloRectangulo:
-    def __init__(self, cateto_a, cateto_b):  # constructor
+    def __init__(self, cateto_a, cateto_b):
         self.cateto_a = cateto_a
         self.cateto_b = cateto_b
+        print("Objeto TrianguloRectangulo creado")
 
     def calcular_hipotenusa(self):
         hipotenusa = math.sqrt(self.cateto_a ** 2 + self.cateto_b ** 2)
@@ -1311,14 +1254,14 @@ def main():
     triangulo = TrianguloRectangulo(cateto1, cateto2)
     resultado = triangulo.calcular_hipotenusa()
 
-    print(f"La hipotenusa del triángulo es {resultado}")
+    print(f"La hipotenusa del triángulo es {resultado:.2f}")
 
 if __name__ == "__main__":
     main()`
             },
             {
                 title: "Ejemplo 34: Destructor (Círculo)",
-                description: "Destrucción de objetos y manejo de errores",
+                description: "Destrucción de objetos y manejo de errores - Gestión de memoria",
                 code: `import math
 
 class Circulo:
@@ -1330,22 +1273,29 @@ class Circulo:
         area = math.pi * self.radio ** 2
         return area
 
+    def __del__(self):
+        print("Objeto círculo destruido")
+
+# Crear objeto
 radio_usuario = float(input("Ingrese el radio del círculo: "))
-
 circulo = Circulo(radio_usuario)
-resultado = circulo.calcular_area()
-print(f"El área del círculo es {resultado}")
 
+# Usar objeto
+resultado = circulo.calcular_area()
+print(f"El área del círculo es {resultado:.2f}")
+
+# Destruir objeto
 del circulo
 
+# Intentar acceder al objeto destruido
 try:
     print(circulo)
 except NameError:
-    print("El objeto ya no existe")`
+    print("El objeto ya no existe - Correctamente destruido")`
             },
             {
                 title: "Ejemplo 35: Destructor (Comida)",
-                description: "Objeto Comida con información nutricional",
+                description: "Objeto Comida con información nutricional - Cálculo de calorías",
                 code: `import math
 
 class Comida:
@@ -1353,8 +1303,7 @@ class Comida:
         self.proteinas = proteinas
         self.carbohidratos = carbohidratos
         self.grasas = grasas
-        print("Objeto comida creada")
-        print(f"{self.proteinas}g {self.carbohidratos}g {self.grasas}g")
+        print("Objeto comida creado")
 
     def calcular_calorias(self):
         calorias = self.proteinas * 4 + self.carbohidratos * 4 + self.grasas * 9
@@ -1367,19 +1316,25 @@ class Comida:
         print(f"Grasas: {self.grasas}g")
         print(f"Calorías totales: {self.calcular_calorias()} Kcal")
 
+    def __del__(self):
+        print("Objeto comida destruido")
+
+# Crear objeto
 almuerzo = Comida(proteinas=30, carbohidratos=50, grasas=20)
 almuerzo.mostrar_informacion()
 
+# Destruir objeto
 del almuerzo
 
+# Verificar destrucción
 try:
     print(almuerzo)
 except NameError:
-    print("Almuerzo destruido")`
+    print("Almuerzo destruido correctamente")`
             },
             {
                 title: "Ejemplo 36: Lista de Estudiantes",
-                description: "Gestión de lista de estudiantes con destructores",
+                description: "Gestión de lista de estudiantes con destructores - Recopilación de datos",
                 code: `import gc
 
 class Estudiante:
@@ -1387,35 +1342,40 @@ class Estudiante:
         self.nombre = nombre
         self.edad = edad
         self.carrera = carrera
-        print(f"Estudiante registrado {self.nombre} {self.edad} años {self.carrera}")
+        print(f"Estudiante registrado: {self.nombre}")
 
     def mostrar_informacion(self):
         print(f"{self.nombre} estudia {self.carrera} y tiene {self.edad} años")
 
     def __del__(self):
-        print(f"Estudiante eliminado {self.nombre}")
+        print(f"Estudiante eliminado: {self.nombre}")
 
+# Datos de estudiantes
 datos_estudiantes = [
     ("Ana", 20, "Medicina"),
     ("Luis", 22, "Ingeniería"),
     ("Carla", 19, "Arquitectura")
 ]
 
+# Crear lista de estudiantes
 grupo = []
 
+print("=== REGISTRO DE ESTUDIANTES ===")
 for datos in datos_estudiantes:
     estudiante = Estudiante(*datos)
     estudiante.mostrar_informacion()
-    grupo.append(estudiante)  # append es añadir
+    grupo.append(estudiante)
 
+print("\\n=== ELIMINACIÓN DE ESTUDIANTES ===")
+# Limpiar lista y recolectar basura
 grupo.clear()
-del estudiante
 gc.collect()
-print("Fin del programa")`
+
+print("\\nFin del programa - Todos los objetos fueron destruidos")`
             },
             {
                 title: "Ejemplo 37: Biblioteca de Libros",
-                description: "Gestión de libros con destructores",
+                description: "Gestión de libros con destructores - Catálogo bibliográfico",
                 code: `import gc
 
 class Libro:
@@ -1423,35 +1383,40 @@ class Libro:
         self.titulo = titulo
         self.autor = autor
         self.anio = anio
-        print(f"Libro registrado {self.titulo} de {self.autor} ({self.anio})")
+        print(f"Libro registrado: {self.titulo}")
 
     def mostrar_informacion(self):
-        print(f"{self.titulo} fue escrito por {self.autor} en {self.anio}")
+        print(f"'{self.titulo}' - {self.autor} ({self.anio})")
 
     def __del__(self):
         print(f"Libro eliminado: {self.titulo}")
 
+# Datos de libros
 libros_datos = [
     ("Cien años de soledad", "Gabriel García Márquez", 1967),
     ("1984", "George Orwell", 1949),
     ("Don Quijote de la Mancha", "Miguel de Cervantes", 1605)
 ]
 
+# Crear biblioteca
 biblioteca = []
 
+print("=== CATÁLOGO DE BIBLIOTECA ===")
 for datos in libros_datos:
     libro = Libro(*datos)
     libro.mostrar_informacion()
     biblioteca.append(libro)
 
+print("\\n=== LIMPIEZA DE BIBLIOTECA ===")
+# Limpiar biblioteca
 biblioteca.clear()
-del libro
 gc.collect()
-print("Fin del programa")`
+
+print("\\nBiblioteca vaciada - Programa terminado")`
             },
             {
                 title: "Ejemplo 38: Inventario de Productos",
-                description: "Gestión de productos con destructores",
+                description: "Gestión de productos con destructores - Control de inventario",
                 code: `import gc
 
 class Producto:
@@ -1459,35 +1424,46 @@ class Producto:
         self.nombre = nombre
         self.precio = precio
         self.cantidad = cantidad
-        print(f"Producto registrado {self.nombre} - $ {self.precio} en stock {self.cantidad}")
+        print(f"Producto registrado: {self.nombre}")
 
     def mostrar_informacion(self):
-        print(f"{self.nombre} precio $ {self.precio} en stock {self.cantidad}")
+        print(f"{self.nombre}: ${self.precio:.2f} - Stock: {self.cantidad}")
+
+    def valor_total(self):
+        return self.precio * self.cantidad
 
     def __del__(self):
         print(f"Producto eliminado: {self.nombre}")
 
+# Datos de productos
 producto_datos = [
     ("Manzana", 0.5, 100),
     ("Pan", 0.3, 50),
     ("Leche", 3.50, 30)
 ]
 
+# Crear inventario
 inventario = []
 
+print("=== INVENTARIO DE PRODUCTOS ===")
+total_valor = 0
 for datos in producto_datos:
     producto = Producto(*datos)
     producto.mostrar_informacion()
+    total_valor += producto.valor_total()
     inventario.append(producto)
 
+print(f"\\nValor total del inventario: ${total_valor:.2f}")
+
+print("\\n=== LIMPIEZA DE INVENTARIO ===")
 inventario.clear()
-del producto
 gc.collect()
-print("Fin del programa")`
+
+print("\\nInventario vaciado - Programa terminado")`
             },
             {
                 title: "Ejemplo 39: Registro de Cursos",
-                description: "Gestión de cursos universitarios",
+                description: "Gestión de cursos universitarios - Sistema académico",
                 code: `import gc
 
 class Curso:
@@ -1495,14 +1471,15 @@ class Curso:
         self.nombre = nombre
         self.codigo = codigo
         self.profesor = profesor
-        print(f"Curso registrado {self.nombre} con código {self.codigo} del {self.profesor}")
+        print(f"Curso registrado: {self.nombre}")
 
     def mostrar_informacion(self):
-        print(f"{self.nombre} con código {self.codigo} con {self.profesor}")
+        print(f"{self.nombre} ({self.codigo}) - Profesor: {self.profesor}")
 
     def __del__(self):
         print(f"Curso eliminado: {self.nombre}")
 
+# Datos de cursos
 curso_datos = [
     ("LENGUAJES DE PROGRAMACIÓN II", "EST305", "COYLA IDME LEONEL"),
     ("INFERENCIA ESTADÍSTICA", "EST306", "ROQUE CLAROS ROBERTO ELVIS"),
@@ -1510,17 +1487,20 @@ curso_datos = [
     ("PROGRAMACIÓN NUMÉRICA", "EST207", "TORRES CRUZ FRED")
 ]
 
+# Crear organización de cursos
 organizacion = []
 
+print("=== REGISTRO DE CURSOS ===")
 for datos in curso_datos:
     curso = Curso(*datos)
     curso.mostrar_informacion()
     organizacion.append(curso)
 
+print("\\n=== LIMPIEZA DE CURSOS ===")
 organizacion.clear()
-del curso
 gc.collect()
-print("Fin del programa")`
+
+print("\\nRegistro de cursos finalizado")`
             }
         ];
 
@@ -1529,36 +1509,73 @@ print("Fin del programa")`
         const modalTitle = document.getElementById('modal-title');
         const modalCode = document.getElementById('modal-code');
         const modalClose = document.getElementById('modal-close');
+        const modalCopyBtn = document.getElementById('modal-copy-btn');
+        const copySuccess = document.getElementById('copy-success');
         const unitButtons = document.querySelectorAll('.unit-btn');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar unidades
+            loadUnit(1, codesUnit1);
+            loadUnit(2, codesUnit2);
+            
+            // Configurar eventos
+            setupEventListeners();
+            
+            // Resaltar sintaxis inicial
+            setTimeout(() => {
+                hljs.highlightAll();
+            }, 500);
+        });
+
+        // Función para cargar una unidad
+        function loadUnit(unitNumber, codesArray) {
+            const container = document.getElementById(`code-container-${unitNumber}`);
+            container.innerHTML = '';
+            
+            codesArray.forEach((code, index) => {
+                const card = createCodeCard(code, unitNumber, index);
+                container.appendChild(card);
+            });
+        }
 
         // Función para crear tarjetas de código
-        function createCodeCard(codeData, unit) {
+        function createCodeCard(codeData, unitNumber, index) {
             const card = document.createElement('div');
             card.className = 'code-card';
+            card.dataset.unit = unitNumber;
+            card.dataset.index = index;
             
-            const cardId = `code-${unit}-${codeData.title.replace(/\s+/g, '-').toLowerCase()}`;
+            // Limitar vista previa del código
+            const previewCode = codeData.code.substring(0, 300) + 
+                (codeData.code.length > 300 ? '...' : '');
             
             card.innerHTML = `
-                <div class="code-header">
-                    <div class="code-title">
-                        <i class="fas fa-code"></i>
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-file-code"></i>
                         ${codeData.title}
                     </div>
-                    <div class="code-actions">
-                        <button class="action-btn view-btn" data-id="${cardId}" title="Ver código">
-                            <i class="fas fa-expand"></i>
+                    <div class="card-actions">
+                        <button class="action-btn view-btn" title="Ver código completo">
+                            <i class="fas fa-expand-alt"></i>
                         </button>
-                        <button class="action-btn copy-btn" data-code="${encodeURIComponent(codeData.code)}" title="Copiar código">
+                        <button class="action-btn copy-btn" title="Copiar código">
                             <i class="far fa-copy"></i>
                         </button>
                     </div>
                 </div>
-                <div class="code-body">
-                    <div class="code-content">
-                        <pre><code class="language-python">${codeData.code}</code></pre>
+                <div class="card-body">
+                    <div class="code-preview">
+                        <pre><code class="language-python">${previewCode}</code></pre>
+                        <div class="code-overlay"></div>
                     </div>
-                    <div class="code-description">
-                        <i class="fas fa-info-circle"></i> ${codeData.description}
+                </div>
+                <div class="card-footer">
+                    <div class="card-description">
+                        <i class="fas fa-info-circle"></i>
+                        <span>${codeData.description}</span>
                     </div>
                 </div>
             `;
@@ -1566,48 +1583,94 @@ print("Fin del programa")`
             return card;
         }
 
-        // Función para inicializar una unidad
-        function initializeUnit(unitNumber, codesArray) {
-            const grid = document.getElementById(`code-grid-${unitNumber}`);
-            grid.innerHTML = '';
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Navegación entre unidades
+            unitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const unit = this.getAttribute('data-unit');
+                    
+                    // Actualizar botones activos
+                    unitButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar contenido de la unidad seleccionada
+                    document.querySelectorAll('.unit-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`unit-${unit}`).classList.add('active');
+                    
+                    // Scroll al inicio de la unidad
+                    document.getElementById(`unit-${unit}`).scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+
+            // Delegación de eventos para los botones de las tarjetas
+            document.addEventListener('click', function(e) {
+                // Verificar si se hizo clic en un botón de vista
+                if (e.target.closest('.view-btn')) {
+                    const card = e.target.closest('.code-card');
+                    const unit = card.dataset.unit;
+                    const index = card.dataset.index;
+                    
+                    const codeData = unit === '1' ? codesUnit1[index] : codesUnit2[index];
+                    openModal(codeData.title, codeData.code);
+                }
+                
+                // Verificar si se hizo clic en un botón de copiar
+                if (e.target.closest('.copy-btn')) {
+                    const card = e.target.closest('.code-card');
+                    const unit = card.dataset.unit;
+                    const index = card.dataset.index;
+                    
+                    const codeData = unit === '1' ? codesUnit1[index] : codesUnit2[index];
+                    copyToClipboard(codeData.code);
+                    
+                    // Feedback visual
+                    const icon = e.target.closest('.copy-btn').querySelector('i');
+                    const originalClass = icon.className;
+                    icon.className = 'fas fa-check';
+                    
+                    setTimeout(() => {
+                        icon.className = originalClass;
+                    }, 1500);
+                }
+            });
+
+            // Modal events
+            modalClose.addEventListener('click', closeModal);
+            modalCopyBtn.addEventListener('click', copyModalCode);
             
-            codesArray.forEach((code, index) => {
-                const card = createCodeCard(code, unitNumber);
-                grid.appendChild(card);
+            // Cerrar modal al hacer clic fuera
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
             });
             
-            // Agregar event listeners a los botones de las tarjetas
-            setTimeout(() => {
-                const viewButtons = grid.querySelectorAll('.view-btn');
-                const copyButtons = grid.querySelectorAll('.copy-btn');
-                
-                viewButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const cardId = this.getAttribute('data-id');
-                        const card = document.getElementById(cardId) || this.closest('.code-card');
-                        const title = card.querySelector('.code-title').textContent;
-                        const code = card.querySelector('code').textContent;
-                        
-                        openModal(title, code);
-                    });
-                });
-                
-                copyButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const code = decodeURIComponent(this.getAttribute('data-code'));
-                        copyToClipboard(code);
-                        
-                        // Feedback visual
-                        const icon = this.querySelector('i');
-                        const originalClass = icon.className;
-                        icon.className = 'fas fa-check';
-                        
-                        setTimeout(() => {
-                            icon.className = originalClass;
-                        }, 2000);
-                    });
-                });
-            }, 100);
+            // Cerrar modal con ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Scroll to top
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Mostrar/ocultar botón de scroll to top
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.style.display = 'flex';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
         }
 
         // Función para abrir el modal
@@ -1616,16 +1679,41 @@ print("Fin del programa")`
             modalCode.textContent = code;
             modal.classList.add('active');
             
+            // Resetear mensaje de copiado
+            copySuccess.classList.remove('show');
+            
             // Resaltar sintaxis
             setTimeout(() => {
                 hljs.highlightElement(modalCode);
             }, 10);
+            
+            // Deshabilitar scroll del body
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Función para copiar código del modal
+        function copyModalCode() {
+            const code = modalCode.textContent;
+            copyToClipboard(code);
+            
+            // Mostrar mensaje de éxito
+            copySuccess.classList.add('show');
+            
+            setTimeout(() => {
+                copySuccess.classList.remove('show');
+            }, 2000);
         }
 
         // Función para copiar al portapapeles
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Código copiado al portapapeles!');
+                console.log('Código copiado al portapapeles');
             }).catch(err => {
                 console.error('Error al copiar: ', err);
                 // Fallback para navegadores antiguos
@@ -1635,62 +1723,8 @@ print("Fin del programa")`
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                alert('Código copiado al portapapeles!');
             });
         }
-
-        // Inicializar unidades
-        initializeUnit(1, codesUnit1);
-        initializeUnit(2, codesUnit2);
-
-        // Event listeners para los botones de unidad
-        unitButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const unit = this.getAttribute('data-unit');
-                
-                // Actualizar botones activos
-                unitButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Mostrar contenido de la unidad seleccionada
-                document.querySelectorAll('.unit-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(`unit-${unit}`).classList.add('active');
-                
-                // Resaltar sintaxis para la unidad activa
-                setTimeout(() => {
-                    document.querySelectorAll(`#unit-${unit} .code-content code`).forEach(block => {
-                        hljs.highlightElement(block);
-                    });
-                }, 100);
-            });
-        });
-
-        // Event listeners para el modal
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
-
-        // Cerrar modal con ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-            }
-        });
-
-        // Resaltar sintaxis inicial
-        setTimeout(() => {
-            document.querySelectorAll('.code-content code').forEach(block => {
-                hljs.highlightElement(block);
-            });
-        }, 500);
     </script>
 </body>
 </html>

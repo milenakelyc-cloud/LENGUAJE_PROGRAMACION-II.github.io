@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LENGUAJE DE PROGRAMACIÓN II - COYLA IDME LEONEL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -131,6 +134,7 @@
             justify-content: center;
             gap: 25px;
             margin: 40px 0;
+            flex-wrap: wrap;
         }
 
         .unit-btn {
@@ -146,6 +150,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            min-width: 200px;
         }
 
         .unit-btn::before {
@@ -289,10 +294,14 @@
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
             line-height: 1.6;
-            color: #0f0;
             max-height: 400px;
             overflow-y: auto;
             box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .hljs {
+            background: transparent !important;
+            padding: 0 !important;
         }
 
         .code-content::-webkit-scrollbar {
@@ -391,11 +400,12 @@
         }
 
         .modal-code {
-            color: #0f0;
+            color: #f8f8f2;
             font-family: 'Courier New', monospace;
             font-size: 1em;
             line-height: 1.8;
             white-space: pre-wrap;
+            margin: 0;
         }
 
         footer {
@@ -408,6 +418,32 @@
             border-top: 1px solid var(--border-color);
         }
 
+        .unit-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 23, 68, 0.1);
+            padding: 15px 30px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-red-3);
+        }
+
+        .stat-number {
+            color: var(--accent-red-1);
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2em;
@@ -415,10 +451,15 @@
             
             .units-nav {
                 flex-direction: column;
+                align-items: center;
             }
             
             .code-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .unit-btn {
+                width: 90%;
             }
         }
     </style>
@@ -446,6 +487,16 @@
             <div class="unit-header">
                 <h2 class="unit-title">Primera Unidad</h2>
                 <p class="unit-description">Fundamentos de Programación Orientada a Objetos - Clases, Objetos y Métodos en Python</p>
+                <div class="unit-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Ejemplos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Conceptos Clave</div>
+                    </div>
+                </div>
             </div>
 
             <div class="code-grid" id="code-grid-1"></div>
@@ -455,7 +506,17 @@
         <div class="unit-content" id="unit-2">
             <div class="unit-header">
                 <h2 class="unit-title">Segunda Unidad</h2>
-                <p class="unit-description">Estructuras de Datos y Control de Flujo - Bucles, Condicionales y Series</p>
+                <p class="unit-description">Encapsulamiento, Métodos Especiales, Destructores y Aplicaciones Avanzadas</p>
+                <div class="unit-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">Ejemplos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Conceptos Clave</div>
+                    </div>
+                </div>
             </div>
 
             <div class="code-grid" id="code-grid-2"></div>
@@ -465,12 +526,13 @@
         <div class="unit-content" id="unit-3">
             <div class="unit-header">
                 <h2 class="unit-title">Tercera Unidad</h2>
-                <p class="unit-description">Próximamente - Proyectos Avanzados</p>
+                <p class="unit-description">Próximamente - Proyectos Avanzados y Aplicaciones Complejas</p>
             </div>
 
             <div style="text-align: center; padding: 100px; color: var(--text-secondary);">
                 <i class="fas fa-hourglass-half" style="font-size: 5em; margin-bottom: 20px; color: var(--accent-red-1);"></i>
                 <h3>Contenido en desarrollo</h3>
+                <p style="margin-top: 20px;">Métodos avanzados, herencia, polimorfismo y aplicaciones prácticas</p>
             </div>
         </div>
 
@@ -493,31 +555,32 @@
     </div>
 
     <script>
+        // Datos de la primera unidad
         const codesUnit1 = [
             {
                 title: "Ejemplo 01: Clase Coche",
                 description: "Introducción a clases con entrada de usuario",
                 code: `class Coche:
-    def __init__(self,marca,modelo,color):
+    def __init__(self, marca, modelo, color):
         self.marca = marca
         self.modelo = modelo
         self.color = color
 
     def mostrar_info(self):
-        print(f"Coche:{self.marca} {self.modelo} {self.color}")
+        print(f"Coche: {self.marca} {self.modelo} {self.color}")
 
     def arrancar(self):
-        print(f"Coche {self.marca} {self.modelo} ha arrancado ")
+        print(f"Coche {self.marca} {self.modelo} ha arrancado")
 
-#Solicitar datos al usuario
-marca = input("Ingrese la marca del coche")
-modelo = input("Ingrese el modelo del auto")
-color = input("Ingrese el color del coche")
-        
-#crear un objeto
+# Solicitar datos al usuario
+marca = input("Ingrese la marca del coche: ")
+modelo = input("Ingrese el modelo del auto: ")
+color = input("Ingrese el color del coche: ")
+
+# Crear un objeto
 mi_coche = Coche(marca, modelo, color)
 
-#Usar los métodos
+# Usar los métodos
 mi_coche.mostrar_info()
 mi_coche.arrancar()`
             },
@@ -525,91 +588,91 @@ mi_coche.arrancar()`
                 title: "Ejemplo 02: Teorema de Pitágoras",
                 description: "Cálculo de hipotenusa usando POO",
                 code: `class Pitagoras:
-    def __init__(self,catetoa,catetob):
-       self.catetoa = catetoa
-       self.catetob = catetob
+    def __init__(self, catetoa, catetob):
+        self.catetoa = catetoa
+        self.catetob = catetob
 
     def calcular_hipotenusa(self):
         return (self.catetoa**2 + self.catetob**2)**(1/2)
 
-#Solicitud
+# Solicitud de datos
 catetoa = float(input("Ingrese cateto a = "))
 catetob = float(input("Ingrese cateto b = "))
 
-operacion = Pitagoras(catetoa,catetob)
+operacion = Pitagoras(catetoa, catetob)
 
-print("La hipotenusa es ",operacion.calcular_hipotenusa())`
+print("La hipotenusa es ", operacion.calcular_hipotenusa())`
             },
             {
                 title: "Ejemplo 03: Rectángulo",
                 description: "Cálculo de área y perímetro",
                 code: `class Rectangulo:
-    def __init__(self,base,altura):
+    def __init__(self, base, altura):
         self.base = base
         self.altura = altura
 
     def area(self):
-        return (self.base * self.altura)
+        return self.base * self.altura
 
     def perimetro(self):
-        return (self.base*2 + self.altura*2)
+        return (self.base * 2 + self.altura * 2)
 
-operacion_area = Rectangulo(5,6)
-operacion_perimetro = Rectangulo(5,6)
+operacion_area = Rectangulo(5, 6)
+operacion_perimetro = Rectangulo(5, 6)
 
-print("El area es ",operacion_area.area())
-print("El perimetro es ",operacion_perimetro.perimetro())`
+print("El área es ", operacion_area.area())
+print("El perímetro es ", operacion_perimetro.perimetro())`
             },
             {
                 title: "Ejemplo 04: Cantidad de Ladrillos",
                 description: "Cálculo de materiales de construcción",
                 code: `class CantidadLadrillos:
-    def __init__(self,longuitud,altura,ancho,Jh,Jv):
-        self.longuitud = longuitud
+    def __init__(self, longitud, altura, ancho, Jh=0.015, Jv=0.015):
+        self.longitud = longitud
         self.altura = altura
         self.ancho = ancho
-        self.Jh = 0.015
-        self.Jv = 0.015
+        self.Jh = Jh
+        self.Jv = Jv
 
-    def Cantidad_de_ladrillos(self):
-        return (1/((self.longuitud + self.Jh) * (self.altura + self.Jv)))
+    def cantidad_de_ladrillos(self):
+        return (1 / ((self.longitud + self.Jh) * (self.altura + self.Jv)))
 
-#Solicitar
-longuitud = float(input("Ingresar longuitud: "))
+# Solicitar datos
+longitud = float(input("Ingresar longitud: "))
 altura = float(input("Ingresar altura: "))
 ancho = float(input("Ingresar ancho: "))
 
-operacion = CantidadLadrillos(longuitud,altura,ancho,0.015,0.015)
+operacion = CantidadLadrillos(longitud, altura, ancho, 0.015, 0.015)
 
-print("La cantidad es ",operacion.Cantidad_de_ladrillos(),"m^2 sin desperdicio")
-print("La cantidad es ",operacion.Cantidad_de_ladrillos()*1.05,"m^2 con desperdicio")`
+print("La cantidad es ", operacion.cantidad_de_ladrillos(), "m^2 sin desperdicio")
+print("La cantidad es ", operacion.cantidad_de_ladrillos() * 1.05, "m^2 con desperdicio")`
             },
             {
                 title: "Ejemplo 05: Clasificador de Números",
                 description: "Determinar si un número es par, impar o nulo",
                 code: `class Numero:
-    def __init__(self,valor):
+    def __init__(self, valor):
         self.valor = valor
 
     def clasificar(self):
         if self.valor == 0:
             return "Nulo"
-        elif self.valor%2 == 0:
+        elif self.valor % 2 == 0:
             return "Par"
         else:
             return "Impar"
             
-ejemplos = [Numero(0),Numero(2),Numero(5)]
+ejemplos = [Numero(0), Numero(2), Numero(5)]
 
 for num in ejemplos:
     tipo = num.clasificar()
-    print(f"El numero {num.valor} es {tipo}")`
+    print(f"El número {num.valor} es {tipo}")`
             },
             {
                 title: "Ejemplo 06: Persona Mayor de Edad",
                 description: "Verificación de mayoría de edad",
                 code: `class Persona:
-    def __init__(self,nombre,edad):
+    def __init__(self, nombre, edad):
         self.nombre = nombre
         self.edad = edad
 
@@ -617,9 +680,9 @@ for num in ejemplos:
         if self.edad >= 18:
             return True
         else:
-            return False 
+            return False
 
-persona = Persona("Maria",25)
+persona = Persona("Maria", 25)
 
 if persona.es_mayor_de_edad():
     print(f"La persona {persona.nombre} es mayor de edad")
@@ -630,12 +693,12 @@ else:
                 title: "Ejemplo 07: Sistema de Aumentos",
                 description: "Aplicar aumentos según cargo de empleado",
                 code: `class Empleado:
-    def __init__(self,Nombre,Cargo,Salario):
+    def __init__(self, Nombre, Cargo, Salario):
         self.Nombre = Nombre
         self.Cargo = Cargo
         self.Salario = Salario
 
-    def AplicarAumento(self):
+    def aplicar_aumento(self):
         if self.Cargo == "Gerente":
             porcentaje = 0.1
         elif self.Cargo == "Supervisor":
@@ -645,21 +708,21 @@ else:
         else:
             porcentaje = 0
 
-        NuevoSalario = self.Salario *(1 + porcentaje)
+        NuevoSalario = self.Salario * (1 + porcentaje)
         return NuevoSalario
-    
+
 emp = Empleado("Juan", "Gerente", 5000)
-nuevo = emp.AplicarAumento()
-    
+nuevo = emp.aplicar_aumento()
+
 print(f"{emp.Nombre} {emp.Cargo}: salario nuevo = {nuevo:.2f}")`
             },
             {
                 title: "Ejemplo 20: Encapsulamiento",
                 description: "Uso de métodos getter y setter",
                 code: `class Persona:
-    def __init__(self,nombre,edad):
-        self.__nombre = nombre #atributo privado
-        self.__edad = edad #atributo privado
+    def __init__(self, nombre, edad):
+        self.__nombre = nombre  # atributo privado
+        self.__edad = edad      # atributo privado
 
     def get_edad(self):
         return self.__edad
@@ -667,40 +730,41 @@ print(f"{emp.Nombre} {emp.Cargo}: salario nuevo = {nuevo:.2f}")`
     def get_nombre(self):
         return self.__nombre
 
-    def set_edad(self,nueva_edad):
+    def set_edad(self, nueva_edad):
         if nueva_edad > 0:
             self.__edad = nueva_edad
         else:
-            print("Edad no valida")
+            print("Edad no válida")
 
-    def set_nombre(self,nuevo_nombre):
+    def set_nombre(self, nuevo_nombre):
         self.__nombre = nuevo_nombre
         return self.__nombre
-    
-persona = Persona("Ana",30)
+
+persona = Persona("Ana", 30)
 print(persona.get_nombre())
 print(persona.get_edad())
 
 persona.set_edad(35)
 persona.set_nombre("Maria")
-print(persona.get_nombre(),persona.get_edad())`
+print(persona.get_nombre(), persona.get_edad())`
             }
         ];
 
+        // Datos de la segunda unidad (incluyendo los nuevos ejemplos)
         const codesUnit2 = [
             {
                 title: "Ejemplo 08: Factorial",
                 description: "Cálculo del factorial de un número",
                 code: `class Factorial:
-    def __init__(self,numero):
+    def __init__(self, numero):
         self.numero = numero
         self.resultado = 1
 
     def calcular(self):
         if self.numero < 0:
-            print("El factorial no esta definido para numeros negativos")
+            print("El factorial no está definido para números negativos")
             return None
-        for i in range(1,self.numero+1):
+        for i in range(1, self.numero + 1):
             self.resultado *= i
         return self.resultado
 
@@ -709,51 +773,51 @@ def main():
     resultado = miFactorial.calcular()
     if resultado is not None:
         print(f"El factorial de {miFactorial.numero} es {resultado}")
-        
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()`
             },
             {
                 title: "Ejemplo 09: Serie de Fibonacci",
                 description: "Generación de la serie de Fibonacci",
                 code: `class Fibonacci:
-    def __init__(self,cantidad):
+    def __init__(self, cantidad):
         self.cantidad = cantidad
         self.serie = []
 
-    def generarSerie(self):
-        a,b = 0,1
+    def generar_serie(self):
+        a, b = 0, 1
         for _ in range(self.cantidad):
             self.serie.append(a)
-            a,b = b,a+b
+            a, b = b, a + b
         return self.serie
 
 def main():
     miFibonacci = Fibonacci(10)
-    resultado = miFibonacci.generarSerie()
+    resultado = miFibonacci.generar_serie()
     print(resultado)
-    
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()`
             },
             {
                 title: "Ejemplo 10: Tabla de Multiplicar",
                 description: "Generación de tabla de multiplicar",
-                code: `class TabladeMultiplicar:
-    def __init__(self,numero):
+                code: `class TablaDeMultiplicar:
+    def __init__(self, numero):
         self.numero = numero
 
-    def generarTabla(self):
+    def generar_tabla(self):
         for i in range(1, 11):
-            resultado = self.numero*i
+            resultado = self.numero * i
             print(f"{self.numero} x {i} = {resultado}")
 
 def main():
-    numero = int(input("Ingrese un numero "))
-    miTabla = TabladeMultiplicar(numero)
-    miTabla.generarTabla()
+    numero = int(input("Ingrese un número: "))
+    miTabla = TablaDeMultiplicar(numero)
+    miTabla.generar_tabla()
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()`
             },
             {
@@ -764,17 +828,17 @@ if __name__=="__main__":
         self.limite = limite
         self.suma = 0
 
-    def calcularSuma(self):
+    def calcular_suma(self):
         for i in range(0, self.limite + 1):
             self.suma = self.suma + i
         return self.suma
 
 def main():
     miSuma = SumaNaturales(10)
-    resultado = miSuma.calcularSuma()
+    resultado = miSuma.calcular_suma()
     print(f"La suma de los primeros {miSuma.limite} números es: {resultado}")
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()`
             },
             {
@@ -831,16 +895,16 @@ if __name__ == "__main__":
                 title: "Ejemplo 14: Fibonacci con While",
                 description: "Serie de Fibonacci usando bucle while",
                 code: `class Fibonacci:
-    def __init__(self,cantidad):
+    def __init__(self, cantidad):
         self.cantidad = cantidad
         self.a = 0
         self.b = 1
         self.contador = 0
-        
-    def generarSerie(self):
+
+    def generar_serie(self):
         print("Serie de Fibonacci")
         while self.contador < self.cantidad:
-            print(self.a, end = " ")
+            print(self.a, end=" ")
             c = self.a + self.b
             self.a = self.b
             self.b = c
@@ -848,30 +912,30 @@ if __name__ == "__main__":
 
 def main():
     miFibonacci = Fibonacci(10)
-    miFibonacci.generarSerie()
-    
-if __name__=="__main__":
+    miFibonacci.generar_serie()
+
+if __name__ == "__main__":
     main()`
             },
             {
                 title: "Ejemplo 15: Imprimir Números",
                 description: "Generar secuencia de números",
                 code: `class Numero:
-    def __init__(self,cantidad):
+    def __init__(self, cantidad):
         self.cantidad = cantidad
         self.contador = 0
-        
-    def generarNumero(self):
-        print("Imprimir Numero")
+
+    def generar_numero(self):
+        print("Imprimir Números")
         while self.contador <= self.cantidad:
-            print(self.contador, end = " ")
+            print(self.contador, end=" ")
             self.contador += 1
 
 def main():
     miNumero = Numero(10)
-    miNumero.generarNumero()
-    
-if __name__=="__main__":
+    miNumero.generar_numero()
+
+if __name__ == "__main__":
     main()`
             },
             {
@@ -880,8 +944,8 @@ if __name__=="__main__":
                 code: `class CalculadoraSuma:
     def __init__(self):
         self.total = 0
-        
-    def sumarNumero(self):
+
+    def sumar_numero(self):
         print("Calcular la suma de números ingresados")
         print("Escribe números para sumar. Escribir 'fin' para terminar")
         entrada = ""
@@ -890,4 +954,743 @@ if __name__=="__main__":
             if entrada.isdigit():
                 self.total += int(entrada)
             elif entrada.lower() != "fin":
-                print("Entrada invalida
+                print("Entrada inválida")
+
+        print(f"Total de la suma: {self.total}")
+
+def main():
+    calculadora = CalculadoraSuma()
+    calculadora.sumar_numero()
+
+if __name__ == "__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 21: Círculo Encapsulado",
+                description: "Encapsulamiento con métodos getter y setter",
+                code: `import math
+
+class Circulo:
+    def __init__(self, radio):
+        self.__radio = radio
+
+    def get_radio(self):
+        return self.__radio
+
+    def set_radio(self, nueva_radio):
+        if nueva_radio > 0:
+            self.__radio = nueva_radio
+        else:
+            print("Radio no válida")
+
+    def calcular_area(self):
+        return math.pi * self.__radio ** 2
+
+    def calcular_perimetro(self):
+        return 2 * math.pi * self.__radio
+
+circulo = Circulo(3)
+print("Área del círculo:", round(circulo.calcular_area(), 2))
+print("Perímetro del círculo:", round(circulo.calcular_perimetro(), 2))`
+            },
+            {
+                title: "Ejemplo 22: Rectángulo Encapsulado",
+                description: "Encapsulamiento de atributos en rectángulo",
+                code: `class Rectangulo:
+    def __init__(self, base, altura):
+        self.__base = base
+        self.__altura = altura
+
+    def get_base(self):
+        return self.__base
+
+    def get_altura(self):
+        return self.__altura
+
+    def set_base(self, nueva_base):
+        if nueva_base > 0:
+            self.__base = nueva_base
+        else:
+            print("Base no válida")
+
+    def set_altura(self, nueva_altura):
+        if nueva_altura > 0:
+            self.__altura = nueva_altura
+        else:
+            print("Altura no válida")
+
+    def calcular_area(self):
+        return self.__base * self.__altura
+
+    def calcular_perimetro(self):
+        return 2 * self.__base + 2 * self.__altura
+
+rectangulo = Rectangulo(5, 4)
+print("El área del rectángulo:", rectangulo.calcular_area())
+print("El perímetro del rectángulo:", rectangulo.calcular_perimetro())`
+            },
+            {
+                title: "Ejemplo 23: Calculadora Completa",
+                description: "Calculadora con encapsulamiento completo",
+                code: `class Calculadora:
+    def __init__(self, numero1, numero2):
+        self.__numero1 = numero1
+        self.__numero2 = numero2
+
+    def get_numero1(self):
+        return self.__numero1
+
+    def get_numero2(self):
+        return self.__numero2
+
+    def set_numero1(self, nuevo_numero1):
+        self.__numero1 = nuevo_numero1
+
+    def set_numero2(self, nuevo_numero2):
+        self.__numero2 = nuevo_numero2
+
+    def sumar(self):
+        return self.__numero1 + self.__numero2
+
+    def restar(self):
+        return self.__numero1 - self.__numero2
+
+    def multiplicar(self):
+        return self.__numero1 * self.__numero2
+
+    def dividir(self):
+        if self.__numero2 != 0:
+            return self.__numero1 / self.__numero2
+        else:
+            return "Error: División entre 0"
+
+calculadora = Calculadora(2, 5)
+
+print("Número 1:", calculadora.get_numero1())
+print("Número 2:", calculadora.get_numero2())
+
+print("Suma:", calculadora.sumar())
+print("Resta:", calculadora.restar())
+print("Multiplicación:", calculadora.multiplicar())
+print("División:", calculadora.dividir())
+
+calculadora.set_numero1(10)
+calculadora.set_numero2(4)
+
+print("\nNuevos valores:")
+print("Número 1:", calculadora.get_numero1())
+print("Número 2:", calculadora.get_numero2())
+print("Suma:", calculadora.sumar())`
+            },
+            {
+                title: "Ejemplo 24: Interacción entre Personas",
+                description: "Métodos que interactúan entre objetos",
+                code: `class Persona:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def saludar(self):
+        print(f"Hola, soy {self.nombre}")
+
+    def responder(self):
+        print(f"Hola {self.nombre}")
+
+persona1 = Persona("Carlos")
+persona1.saludar()
+
+persona2 = Persona("Maria")
+persona2.responder()`
+            },
+            {
+                title: "Ejemplo 25: Métodos con Parámetros",
+                description: "Uso de parámetros en métodos",
+                code: `class Calculadora:
+    def sumar(self, a, b):
+        self.a = a
+        self.b = b
+        return self.a + self.b
+
+calcular = Calculadora()
+suma = calcular.sumar(1, 3)
+
+print(f"La suma de los parámetros {calcular.a} y {calcular.b} es {suma}")`
+            },
+            {
+                title: "Ejemplo 26: Métodos de Instancia",
+                description: "Métodos que operan sobre atributos",
+                code: `class Rectangulo:
+    def __init__(self, base, altura):
+        self.base = base
+        self.altura = altura
+
+    def calcular_area(self):
+        return self.base * self.altura
+
+rectangulo = Rectangulo(10, 5)
+area = rectangulo.calcular_area()
+
+print("El área de un rectángulo es:", area)`
+            },
+            {
+                title: "Ejemplo 27: Sobrecarga de Métodos",
+                description: "Método con parámetros opcionales",
+                code: `class Operaciones:
+    def sumar(self, a, b, c=None):
+        if c is not None:
+            return a + b + c
+        else:
+            return a + b
+
+operacion1 = Operaciones()
+operacion2 = Operaciones()
+
+print("Suma con dos números:", operacion1.sumar(5, 7))
+print("Suma con tres números:", operacion2.sumar(1, 2, 3))`
+            },
+            {
+                title: "Ejemplo 28: Círculo con Métodos",
+                description: "Círculo con múltiples métodos",
+                code: `import math
+
+class Circulo:
+    def __init__(self, radio):
+        self.radio = radio
+
+    def calcular_area(self):
+        area = math.pi * self.radio ** 2
+        return area
+
+    def calcular_perimetro(self):
+        perimetro = 2 * math.pi * self.radio
+        return perimetro
+
+    def mostrar_informacion(self):
+        print(f"Radio del círculo es: {self.radio}")
+        print(f"El área es: {self.calcular_area():.2f}")
+        print(f"El perímetro es: {self.calcular_perimetro():.2f}")
+
+circulo = Circulo(7)
+circulo.mostrar_informacion()`
+            },
+            {
+                title: "Ejemplo 29: Triángulo Rectángulo",
+                description: "Cálculo de hipotenusa en triángulo",
+                code: `class Triangulo:
+    def __init__(self, catetoa, catetob):
+        self.catetoa = catetoa
+        self.catetob = catetob
+
+    def calcular_hipotenusa(self):
+        hipotenusa = (self.catetoa ** 2 + self.catetob ** 2) ** (1/2)
+        return hipotenusa
+
+hipotenusa = Triangulo(3, 4)
+
+print("La hipotenusa es:", hipotenusa.calcular_hipotenusa())`
+            },
+            {
+                title: "Ejemplo 30: Métodos Especiales (Persona)",
+                description: "Sobrecarga de operadores en Persona",
+                code: `class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def __str__(self):
+        return f"{self.nombre}, {self.edad} años"
+
+    def __eq__(self, otra):
+        return self.edad == otra.edad
+
+    def __gt__(self, otra):
+        return self.edad > otra.edad
+
+    def __add__(self, otra):
+        return self.edad + otra.edad
+
+persona1 = Persona("Carlos", 30)
+persona2 = Persona("Ana", 25)
+persona3 = Persona("Lucia", 30)
+
+print(persona1)
+print(persona2)
+print(persona3)
+
+print(persona1 == persona2)
+print(persona1 == persona3)
+
+print(persona1 > persona2)
+
+print("Suma de edades:", persona1 + persona2)
+print("Suma de edades:", persona1 + persona3)`
+            },
+            {
+                title: "Ejemplo 31: Métodos Especiales (Producto)",
+                description: "Sobrecarga de operadores en Producto",
+                code: `class Producto:
+    def __init__(self, nombre, precio, stock):
+        self.nombre = nombre
+        self.precio = precio
+        self.stock = stock
+
+    def __str__(self):
+        return f"{self.nombre} - S/. {self.precio:.2f} - Stock: {self.stock}"
+
+    def __eq__(self, otro):
+        return self.nombre == otro.nombre
+
+    def __add__(self, otro):
+        return self.precio + otro.precio
+
+prod1 = Producto("Arroz", 3.50, 20)
+prod2 = Producto("Arroz", 3.50, 15)
+prod3 = Producto("Azúcar", 4.00, 10)
+
+print(prod1)
+print(prod2)
+print(prod3)
+
+print(prod1 == prod2)
+print(prod1 == prod3)
+
+print("Suma de precio de productos:", prod1 + prod2)
+print("Suma de precio de productos:", prod1 + prod3)`
+            },
+            {
+                title: "Ejemplo 32: Métodos Especiales (Cuenta Bancaria)",
+                description: "Sobrecarga del operador resta",
+                code: `class CuentaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+
+    def mostrar(self):
+        print(f"Titular: {self.titular}, Saldo: ${self.saldo:.2f}")
+
+    def __sub__(self, cantidad):
+        if isinstance(cantidad, (int, float)):
+            if cantidad <= self.saldo:
+                return CuentaBancaria(self.titular, self.saldo - cantidad)
+            else:
+                print("Fondos insuficientes")
+                return self
+        else:
+            print("Operador no válido")
+            return self
+
+cuenta1 = CuentaBancaria("Luis", 1000)
+cuenta1.mostrar()
+
+cuenta2 = cuenta1 - 250
+cuenta2.mostrar()
+
+cuenta3 = cuenta2 - 700
+cuenta3.mostrar()`
+            },
+            {
+                title: "Ejemplo 33: Destructor (Triángulo)",
+                description: "Uso del método destructor __del__",
+                code: `import math
+
+class TrianguloRectangulo:
+    def __init__(self, cateto_a, cateto_b):  # constructor
+        self.cateto_a = cateto_a
+        self.cateto_b = cateto_b
+
+    def calcular_hipotenusa(self):
+        hipotenusa = math.sqrt(self.cateto_a ** 2 + self.cateto_b ** 2)
+        return hipotenusa
+
+    def __del__(self):
+        print("Objeto TrianguloRectangulo destruido")
+
+def main():
+    cateto1 = float(input("Ingrese el valor del primer cateto: "))
+    cateto2 = float(input("Ingrese el valor del segundo cateto: "))
+
+    triangulo = TrianguloRectangulo(cateto1, cateto2)
+    resultado = triangulo.calcular_hipotenusa()
+
+    print(f"La hipotenusa del triángulo es {resultado}")
+
+if __name__ == "__main__":
+    main()`
+            },
+            {
+                title: "Ejemplo 34: Destructor (Círculo)",
+                description: "Destrucción de objetos y manejo de errores",
+                code: `import math
+
+class Circulo:
+    def __init__(self, radio):
+        self.radio = radio
+        print("Objeto círculo creado")
+
+    def calcular_area(self):
+        area = math.pi * self.radio ** 2
+        return area
+
+radio_usuario = float(input("Ingrese el radio del círculo: "))
+
+circulo = Circulo(radio_usuario)
+resultado = circulo.calcular_area()
+print(f"El área del círculo es {resultado}")
+
+del circulo
+
+try:
+    print(circulo)
+except NameError:
+    print("El objeto ya no existe")`
+            },
+            {
+                title: "Ejemplo 35: Destructor (Comida)",
+                description: "Objeto Comida con información nutricional",
+                code: `import math
+
+class Comida:
+    def __init__(self, proteinas, carbohidratos, grasas):
+        self.proteinas = proteinas
+        self.carbohidratos = carbohidratos
+        self.grasas = grasas
+        print("Objeto comida creada")
+        print(f"{self.proteinas}g {self.carbohidratos}g {self.grasas}g")
+
+    def calcular_calorias(self):
+        calorias = self.proteinas * 4 + self.carbohidratos * 4 + self.grasas * 9
+        return calorias
+
+    def mostrar_informacion(self):
+        print("INFORMACIÓN NUTRICIONAL")
+        print(f"Proteínas: {self.proteinas}g")
+        print(f"Carbohidratos: {self.carbohidratos}g")
+        print(f"Grasas: {self.grasas}g")
+        print(f"Calorías totales: {self.calcular_calorias()} Kcal")
+
+almuerzo = Comida(proteinas=30, carbohidratos=50, grasas=20)
+almuerzo.mostrar_informacion()
+
+del almuerzo
+
+try:
+    print(almuerzo)
+except NameError:
+    print("Almuerzo destruido")`
+            },
+            {
+                title: "Ejemplo 36: Lista de Estudiantes",
+                description: "Gestión de lista de estudiantes con destructores",
+                code: `import gc
+
+class Estudiante:
+    def __init__(self, nombre, edad, carrera):
+        self.nombre = nombre
+        self.edad = edad
+        self.carrera = carrera
+        print(f"Estudiante registrado {self.nombre} {self.edad} años {self.carrera}")
+
+    def mostrar_informacion(self):
+        print(f"{self.nombre} estudia {self.carrera} y tiene {self.edad} años")
+
+    def __del__(self):
+        print(f"Estudiante eliminado {self.nombre}")
+
+datos_estudiantes = [
+    ("Ana", 20, "Medicina"),
+    ("Luis", 22, "Ingeniería"),
+    ("Carla", 19, "Arquitectura")
+]
+
+grupo = []
+
+for datos in datos_estudiantes:
+    estudiante = Estudiante(*datos)
+    estudiante.mostrar_informacion()
+    grupo.append(estudiante)  # append es añadir
+
+grupo.clear()
+del estudiante
+gc.collect()
+print("Fin del programa")`
+            },
+            {
+                title: "Ejemplo 37: Biblioteca de Libros",
+                description: "Gestión de libros con destructores",
+                code: `import gc
+
+class Libro:
+    def __init__(self, titulo, autor, anio):
+        self.titulo = titulo
+        self.autor = autor
+        self.anio = anio
+        print(f"Libro registrado {self.titulo} de {self.autor} ({self.anio})")
+
+    def mostrar_informacion(self):
+        print(f"{self.titulo} fue escrito por {self.autor} en {self.anio}")
+
+    def __del__(self):
+        print(f"Libro eliminado: {self.titulo}")
+
+libros_datos = [
+    ("Cien años de soledad", "Gabriel García Márquez", 1967),
+    ("1984", "George Orwell", 1949),
+    ("Don Quijote de la Mancha", "Miguel de Cervantes", 1605)
+]
+
+biblioteca = []
+
+for datos in libros_datos:
+    libro = Libro(*datos)
+    libro.mostrar_informacion()
+    biblioteca.append(libro)
+
+biblioteca.clear()
+del libro
+gc.collect()
+print("Fin del programa")`
+            },
+            {
+                title: "Ejemplo 38: Inventario de Productos",
+                description: "Gestión de productos con destructores",
+                code: `import gc
+
+class Producto:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+        print(f"Producto registrado {self.nombre} - $ {self.precio} en stock {self.cantidad}")
+
+    def mostrar_informacion(self):
+        print(f"{self.nombre} precio $ {self.precio} en stock {self.cantidad}")
+
+    def __del__(self):
+        print(f"Producto eliminado: {self.nombre}")
+
+producto_datos = [
+    ("Manzana", 0.5, 100),
+    ("Pan", 0.3, 50),
+    ("Leche", 3.50, 30)
+]
+
+inventario = []
+
+for datos in producto_datos:
+    producto = Producto(*datos)
+    producto.mostrar_informacion()
+    inventario.append(producto)
+
+inventario.clear()
+del producto
+gc.collect()
+print("Fin del programa")`
+            },
+            {
+                title: "Ejemplo 39: Registro de Cursos",
+                description: "Gestión de cursos universitarios",
+                code: `import gc
+
+class Curso:
+    def __init__(self, nombre, codigo, profesor):
+        self.nombre = nombre
+        self.codigo = codigo
+        self.profesor = profesor
+        print(f"Curso registrado {self.nombre} con código {self.codigo} del {self.profesor}")
+
+    def mostrar_informacion(self):
+        print(f"{self.nombre} con código {self.codigo} con {self.profesor}")
+
+    def __del__(self):
+        print(f"Curso eliminado: {self.nombre}")
+
+curso_datos = [
+    ("LENGUAJES DE PROGRAMACIÓN II", "EST305", "COYLA IDME LEONEL"),
+    ("INFERENCIA ESTADÍSTICA", "EST306", "ROQUE CLAROS ROBERTO ELVIS"),
+    ("MODELOS DISCRETOS", "EST307", "VARGAS VALVERDE CONFESOR MILAN"),
+    ("PROGRAMACIÓN NUMÉRICA", "EST207", "TORRES CRUZ FRED")
+]
+
+organizacion = []
+
+for datos in curso_datos:
+    curso = Curso(*datos)
+    curso.mostrar_informacion()
+    organizacion.append(curso)
+
+organizacion.clear()
+del curso
+gc.collect()
+print("Fin del programa")`
+            }
+        ];
+
+        // Variables globales
+        const modal = document.getElementById('code-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCode = document.getElementById('modal-code');
+        const modalClose = document.getElementById('modal-close');
+        const unitButtons = document.querySelectorAll('.unit-btn');
+
+        // Función para crear tarjetas de código
+        function createCodeCard(codeData, unit) {
+            const card = document.createElement('div');
+            card.className = 'code-card';
+            
+            const cardId = `code-${unit}-${codeData.title.replace(/\s+/g, '-').toLowerCase()}`;
+            
+            card.innerHTML = `
+                <div class="code-header">
+                    <div class="code-title">
+                        <i class="fas fa-code"></i>
+                        ${codeData.title}
+                    </div>
+                    <div class="code-actions">
+                        <button class="action-btn view-btn" data-id="${cardId}" title="Ver código">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="action-btn copy-btn" data-code="${encodeURIComponent(codeData.code)}" title="Copiar código">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="code-body">
+                    <div class="code-content">
+                        <pre><code class="language-python">${codeData.code}</code></pre>
+                    </div>
+                    <div class="code-description">
+                        <i class="fas fa-info-circle"></i> ${codeData.description}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Función para inicializar una unidad
+        function initializeUnit(unitNumber, codesArray) {
+            const grid = document.getElementById(`code-grid-${unitNumber}`);
+            grid.innerHTML = '';
+            
+            codesArray.forEach((code, index) => {
+                const card = createCodeCard(code, unitNumber);
+                grid.appendChild(card);
+            });
+            
+            // Agregar event listeners a los botones de las tarjetas
+            setTimeout(() => {
+                const viewButtons = grid.querySelectorAll('.view-btn');
+                const copyButtons = grid.querySelectorAll('.copy-btn');
+                
+                viewButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const cardId = this.getAttribute('data-id');
+                        const card = document.getElementById(cardId) || this.closest('.code-card');
+                        const title = card.querySelector('.code-title').textContent;
+                        const code = card.querySelector('code').textContent;
+                        
+                        openModal(title, code);
+                    });
+                });
+                
+                copyButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const code = decodeURIComponent(this.getAttribute('data-code'));
+                        copyToClipboard(code);
+                        
+                        // Feedback visual
+                        const icon = this.querySelector('i');
+                        const originalClass = icon.className;
+                        icon.className = 'fas fa-check';
+                        
+                        setTimeout(() => {
+                            icon.className = originalClass;
+                        }, 2000);
+                    });
+                });
+            }, 100);
+        }
+
+        // Función para abrir el modal
+        function openModal(title, code) {
+            modalTitle.textContent = title;
+            modalCode.textContent = code;
+            modal.classList.add('active');
+            
+            // Resaltar sintaxis
+            setTimeout(() => {
+                hljs.highlightElement(modalCode);
+            }, 10);
+        }
+
+        // Función para copiar al portapapeles
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Código copiado al portapapeles!');
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+                // Fallback para navegadores antiguos
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Código copiado al portapapeles!');
+            });
+        }
+
+        // Inicializar unidades
+        initializeUnit(1, codesUnit1);
+        initializeUnit(2, codesUnit2);
+
+        // Event listeners para los botones de unidad
+        unitButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const unit = this.getAttribute('data-unit');
+                
+                // Actualizar botones activos
+                unitButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Mostrar contenido de la unidad seleccionada
+                document.querySelectorAll('.unit-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(`unit-${unit}`).classList.add('active');
+                
+                // Resaltar sintaxis para la unidad activa
+                setTimeout(() => {
+                    document.querySelectorAll(`#unit-${unit} .code-content code`).forEach(block => {
+                        hljs.highlightElement(block);
+                    });
+                }, 100);
+            });
+        });
+
+        // Event listeners para el modal
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Resaltar sintaxis inicial
+        setTimeout(() => {
+            document.querySelectorAll('.code-content code').forEach(block => {
+                hljs.highlightElement(block);
+            });
+        }, 500);
+    </script>
+</body>
+</html>
